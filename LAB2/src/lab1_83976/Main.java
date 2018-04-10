@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Main {
  public static void main(String[] args) {
-	 int a= Integer.parseInt(args[1]);
+	 int a= Integer.parseInt(args[0]);
 	 if(a<1) {
 		System.out.println("Input number must be hreater than one\n");
 		 System.exit(1);
@@ -13,15 +13,19 @@ public class Main {
 	 LAB2[] lab2 = new LAB2[a];
 	 Random rand = new Random();
 	 int counter=0;
+	 boolean b=true;
 	 boolean verify=true, v_aux=false;
-	 while(true) {
+	 while(b) {
 		 int i,j;
 		 for(i=0;i<a;i++) {
 			 lab2[i]=new LAB2();
 		 }
 		 for(i=0;i<a;i++) {
 			 for(j=0;j<10;j++) {
-			 LAB1 aux= new LAB1(rand.nextInt(9),0);
+				 int alfa=rand.nextInt(10);
+				 System.out.println(alfa);
+				 
+			 LAB1 aux= new LAB1(alfa,0);
 			 v_aux=lab2[i].associateLab1(aux);
 			 if(!v_aux) verify=false;
 			 }
