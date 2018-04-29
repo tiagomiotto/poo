@@ -5,7 +5,7 @@ import java.util.PriorityQueue;
 public class PEC implements PECS {
 
 	PriorityQueue<Event> events;
-	Simulator simulator;
+	//Simulator simulator;
 
 	/**
 	 *

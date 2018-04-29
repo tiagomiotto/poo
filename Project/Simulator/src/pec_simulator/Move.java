@@ -30,7 +30,7 @@ public class Move extends Event {
 
 	public final double generateTimestamp() {
 		Random rand= new Random();
-		double lambda = (1 - Math.log(super.getMe().getComfort())) * getRef_pec().simulator.getVariables().getDelta();
+		double lambda = (1 - Math.log(super.getMe().getComfort())) * getMe().getSimulator().getVariables().getDelta();
 		return Math.log(1-rand.nextDouble())/(-lambda);
 	}
 
