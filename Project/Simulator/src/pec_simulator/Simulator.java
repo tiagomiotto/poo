@@ -13,4 +13,11 @@ public class Simulator {
 		throw new UnsupportedOperationException();
 	}
 
+	public EventVariables getVariables() {
+		return variables;
+	}
+
+	public Grid getGrid() {
+		return grid;
+	}
 }

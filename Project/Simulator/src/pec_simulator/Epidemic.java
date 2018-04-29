@@ -7,7 +7,7 @@ public class Epidemic extends Event {
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
+
 	public double generateTimestamp() {
 		return 0;
 	}
