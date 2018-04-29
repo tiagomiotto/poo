@@ -29,7 +29,6 @@ public class Grid {
 
     public int calclulateCost(int[][] path) {
         //TODO calculates cost of the path
-		// ab
         return 0;
     }
 
