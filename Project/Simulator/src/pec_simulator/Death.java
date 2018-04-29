@@ -4,7 +4,7 @@ import java.util.PriorityQueue;
 import java.util.Random;
 
 public class Death extends Event {
-	private double miu;
+
 
 	public void simulateEvent() {
 		// TODO - implement Death.simulateEvent
@@ -19,15 +19,14 @@ public class Death extends Event {
 
 	}
 
-	@Override
-	public double generateTimestamp() {
+	public final double generateTimestamp() {
 		Random rand= new Random();
-		double lambda = (1 - Math.log(getMe().getComfort())) * miu;
+		double lambda = (1 - Math.log(getMe().getComfort())) * getRef_pec().variables.getMiu();
 		return Math.log(1-rand.nextDouble())/(-lambda);
 	}
 
-	public Death(Individual me, double timestamp, PEC ref_pec, double miu) {
+	public Death(Individual me, double timestamp, PEC ref_pec) {
 		super(me, timestamp, ref_pec);
-		this.miu = miu;
+		super.setTimestamp(this.generateTimestamp());
 	}
 }

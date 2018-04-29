@@ -5,7 +5,8 @@ public class Simulator {
 	private PEC pec;
 	private Event currentEv;
 	private Grid grid;
-	private Individual population;
+	private Individual[] population;
+	private EventVariables variables;
 
 	public void main() {
 		// TODO - implement Simulator.main

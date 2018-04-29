@@ -17,7 +17,7 @@ public abstract class Event {
 		this.timestamp = timestamp;
 	}
 
-	abstract double generateTimestamp();
+	//abstract double generateTimestamp();
 
 	public Event(Individual me, double timestamp, PEC ref_pec) {
 		this.me = me;

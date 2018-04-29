@@ -5,6 +5,7 @@ import java.util.PriorityQueue;
 public class PEC implements PECS {
 
 	protected PriorityQueue<Event> events;
+	protected EventVariables variables;
 
 	/**
 	 *
@@ -25,4 +26,7 @@ public class PEC implements PECS {
 		throw new UnsupportedOperationException();
 	}
 
+	public PEC(EventVariables variables) {
+		this.variables = variables;
+	}
 }

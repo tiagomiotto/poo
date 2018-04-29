@@ -3,9 +3,6 @@ import java.util.Random;
 
 
 public class Move extends Event {
-	private double delta;
-
-
 
 	public void simulateEvent() {
 		// TODO - implement Move.simulateEvent
@@ -25,21 +22,19 @@ public class Move extends Event {
 			case (4):
 				super.getMe().setMy_y(super.getMe().getMy_y() - 1); //W
 		}
-		super.getRef_pec().addEventPEC(new Move(super.getMe(), generateTimestamp(), super.getRef_pec(), this.delta)); // Add next move
+		super.getRef_pec().addEventPEC(new Move(super.getMe(), generateTimestamp(), super.getRef_pec())); // Add next move
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
-	public double generateTimestamp() {
+
+	public final double generateTimestamp() {
 		Random rand= new Random();
-		double lambda = (1 - Math.log(super.getMe().getComfort())) * delta;
+		double lambda = (1 - Math.log(super.getMe().getComfort())) * getRef_pec().variables.getDelta();
 		return Math.log(1-rand.nextDouble())/(-lambda);
 	}
 
-	public Move(Individual me, double timestamp, PEC ref_pec, double delta2) {
+	public Move(Individual me, double timestamp, PEC ref_pec) {
 		super(me, timestamp, ref_pec);
-		this.delta = delta2;
+		super.setTimestamp(this.generateTimestamp());
 	}
-
-
 }
