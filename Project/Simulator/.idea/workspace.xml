@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="acd55bcf-949d-46bc-8dde-2bf496d6c7ec" name="Default" comment="Updates">
+    <list default="true" id="acd55bcf-949d-46bc-8dde-2bf496d6c7ec" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pec_simulator/Death.java" afterPath="$PROJECT_DIR$/src/pec_simulator/Death.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pec_simulator/Move.java" afterPath="$PROJECT_DIR$/src/pec_simulator/Move.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pec_simulator/PEC.java" afterPath="$PROJECT_DIR$/src/pec_simulator/PEC.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pec_simulator/Reproduction.java" afterPath="$PROJECT_DIR$/src/pec_simulator/Reproduction.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -349,7 +345,14 @@
       <option name="project" value="LOCAL" />
       <updated>1525025271373</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Updates">
+      <created>1525026447215</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1525026447215</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView">
