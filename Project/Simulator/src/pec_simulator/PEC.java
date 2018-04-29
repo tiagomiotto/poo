@@ -4,11 +4,12 @@ import java.util.PriorityQueue;
 
 public class PEC implements PECS {
 
-	private PriorityQueue<Event> events;
+	protected PriorityQueue<Event> events;
 
 	/**
-	 * 
-	 * @param
+	 *
+	 * @param o1
+	 *
 	 */
 	public void addEventPEC(Event o1) {
 		// TODO - implement PEC.addEventPEC

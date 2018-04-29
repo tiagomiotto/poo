@@ -3,7 +3,7 @@ package pec_simulator;
 import java.util.Random;
 
 public class Reproduction extends Event {
-	double p;
+	private double p;
 	public void simulateEvent() {
 		// TODO - implement Reproduction.simulateEvent
 		throw new UnsupportedOperationException();
@@ -14,7 +14,7 @@ public class Reproduction extends Event {
 	@Override
 	public double generateTimestamp() {
 		Random rand= new Random();
-		double lambda= (1-Math.log(me.getComfort()))*p;
+		double lambda = (1 - Math.log(getMe().getComfort())) * p;
 		return Math.log(1-rand.nextDouble())/(-lambda);
 	}
 

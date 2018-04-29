@@ -1,26 +1,44 @@
 package pec_simulator;
 
+
 public abstract class Event {
 
-	protected Individual me;
-	protected double timestamp;
-	protected PEC ref_pec;
+	private Individual me;
+	private double timestamp;
+	private PEC ref_pec;
 
 	public abstract void simulateEvent();
 
-	public double getTimestamp() {
+	double getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(double timestamp) {
+	void setTimestamp(double timestamp) {
 		this.timestamp = timestamp;
 	}
 
-	public abstract double generateTimestamp();
+	abstract double generateTimestamp();
 
 	public Event(Individual me, double timestamp, PEC ref_pec) {
 		this.me = me;
 		this.timestamp = timestamp;
 		this.ref_pec = ref_pec;
 	}
+
+	Individual getMe() {
+		return me;
+	}
+
+	void setMe(Individual me) {
+		this.me = me;
+	}
+
+	PEC getRef_pec() {
+		return ref_pec;
+	}
+
+	public void setRef_pec(PEC ref_pec) {
+		this.ref_pec = ref_pec;
+	}
+
 }

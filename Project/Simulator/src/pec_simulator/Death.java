@@ -1,19 +1,28 @@
 package pec_simulator;
 
+import java.util.PriorityQueue;
 import java.util.Random;
 
 public class Death extends Event {
-	double miu;
+	private double miu;
 
 	public void simulateEvent() {
 		// TODO - implement Death.simulateEvent
+		PriorityQueue<Event> pqCopy = new PriorityQueue<Event>(getRef_pec().events);
+		while (!pqCopy.isEmpty()) { //Removes following events from PEC
+			Event obj = pqCopy.poll();
+			if (obj.getMe() == this.getMe()) getRef_pec().events.remove(obj);
+			// obj is the next ordered item in the queue
+		}
+		this.setMe(null); //Kill object?
 		throw new UnsupportedOperationException();
+
 	}
 
 	@Override
 	public double generateTimestamp() {
 		Random rand= new Random();
-		double lambda= (1-Math.log(me.getComfort()))*miu;
+		double lambda = (1 - Math.log(getMe().getComfort())) * miu;
 		return Math.log(1-rand.nextDouble())/(-lambda);
 	}
 
