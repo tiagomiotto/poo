@@ -1,11 +1,13 @@
 package pec_simulator;
 
+import java.util.LinkedList;
+
 public class Simulator {
 
 	private PEC pec;
 	private Event currentEv;
 	private Grid grid;
-	private Individual[] population;
+	private LinkedList<Individual> population = new LinkedList<Individual>();
 	private EventVariables variables;
 
 	public void main() {
@@ -19,5 +21,9 @@ public class Simulator {
 
 	public Grid getGrid() {
 		return grid;
+	}
+
+	public LinkedList<Individual> getPopulation() {
+		return population;
 	}
 }

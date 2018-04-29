@@ -1,6 +1,5 @@
 package pec_simulator;
 
-import java.util.Random;
 
 public class Individual {
 
@@ -53,8 +52,6 @@ public class Individual {
         this.cost = simulator.getGrid().calclulateCost(this.path);
 
     }
-
-
 
 
 

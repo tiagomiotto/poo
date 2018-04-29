@@ -6,9 +6,21 @@ public class Reproduction extends Event {
 
 	public void simulateEvent() {
 		// TODO - implement Reproduction.simulateEvent
+		Individual child = new Individual(getMe());
+		//Add events
+		getRef_pec().addEventPEC(new Reproduction(getMe(), 1000, getRef_pec()));
+		getRef_pec().addEventPEC(new Reproduction(child, 1000, getRef_pec()));
+		getRef_pec().addEventPEC(new Move(child, 1000, getRef_pec()));
+		getRef_pec().addEventPEC(new Death(child, 1000, getRef_pec()));
+		//Update population
+		getMe().getSimulator().getPopulation().add(child);
+		getMe().getSimulator().getVariables().setV(getMe().getSimulator().getVariables().getV() + 1);
+		//Test for epidemic and add it to next event
+		if (getMe().getSimulator().getVariables().getV() > getMe().getSimulator().getVariables().getV_max()) {
+			getRef_pec().addEventPEC(new Epidemic(getMe(), getRef_pec()));
+		}
 		throw new UnsupportedOperationException();
 	}
-
 
 
 

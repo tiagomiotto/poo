@@ -13,7 +13,7 @@ public class Epidemic extends Event {
 		return 0;
 	}
 
-	public Epidemic(Individual me, double timestamp, PEC ref_pec) {
+	public Epidemic(Individual me, PEC ref_pec) {
 		super(me, 0, ref_pec);
 	}
 }
