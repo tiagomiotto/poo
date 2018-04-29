@@ -1,4 +1,4 @@
-package Simulate;
+package pec_simulator;
 
 public interface PECS {
 
@@ -6,7 +6,7 @@ public interface PECS {
 	 * 
 	 * @param Event
 	 */
-	void addEventPEC(int Event);
+	void addEventPEC(Event o1);
 
 	void nextEventPEC();
 

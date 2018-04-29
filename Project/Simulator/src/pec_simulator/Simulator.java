@@ -1,4 +1,4 @@
-package Simulate;
+package pec_simulator;
 
 public class Simulator {
 
