@@ -4,8 +4,9 @@ public class Epidemic extends Event {
 
 	public void simulateEvent() {
 		// TODO - implement Epidemic.simulateEvent
-		throw new UnsupportedOperationException();
-	}
+
+        throw new UnsupportedOperationException();
+    }
 
 
 	public double generateTimestamp() {

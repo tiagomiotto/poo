@@ -14,7 +14,7 @@ public class Reproduction extends Event {
 
 	public double generateTimestamp() {
 		Random rand= new Random();
-		double lambda = (1 - Math.log(getMe().getComfort())) * getRef_pec().variables.getP();
+		double lambda = (1 - Math.log(getMe().getComfort())) * getRef_pec().simulator.getVariables().getP();
 		return Math.log(1-rand.nextDouble())/(-lambda);
 	}
 

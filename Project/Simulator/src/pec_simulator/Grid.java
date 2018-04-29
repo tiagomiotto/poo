@@ -26,4 +26,19 @@ public class Grid {
 	public int getYf() {
 		return yf;
 	}
+
+    public int calclulateCost(int[][] path) {
+        //TODO calculates cost of the path
+        return 0;
+    }
+
+    public int calculateDist(int x, int y) {
+        //TODO calculate dist from (x,y) to (xf,yf) shortest path
+        return 0;
+    }
+
+    public int getPossibilities(int x, int y) {
+        //TODO get possible movements for each (x,y)
+        return 0;
+    }
 }

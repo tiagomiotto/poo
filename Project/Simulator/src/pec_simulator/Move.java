@@ -13,8 +13,9 @@ public class Move extends Event {
 			if(rand.nextDouble()<=(double)(i/possible)) break;
 		}
 		switch (i){ //Falta  atualizar custos e afins
-			case (1):
-				super.getMe().setMy_x(super.getMe().getMy_x() + 1); //N
+			case (1): {
+
+			}
 			case (2):
 				super.getMe().setMy_y(super.getMe().getMy_y() + 1); //E
 			case (3):
@@ -29,7 +30,7 @@ public class Move extends Event {
 
 	public final double generateTimestamp() {
 		Random rand= new Random();
-		double lambda = (1 - Math.log(super.getMe().getComfort())) * getRef_pec().variables.getDelta();
+		double lambda = (1 - Math.log(super.getMe().getComfort())) * getRef_pec().simulator.getVariables().getDelta();
 		return Math.log(1-rand.nextDouble())/(-lambda);
 	}
 
