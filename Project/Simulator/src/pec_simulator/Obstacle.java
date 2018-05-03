@@ -1,8 +1,15 @@
-package pec_simulator;
+package simulator;
 
-public class Obstacle {
+public class Obstacle extends Point {
 
-	private int x;
-	private int y;
+    // constructor
+    public Obstacle (int x, int y) {
+        super(x,y);
+    }
 
+    // indica que é obstáculo
+    @Override
+    public boolean obsFlag () {
+        return true;
+    }
 }
