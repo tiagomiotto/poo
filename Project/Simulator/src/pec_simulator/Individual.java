@@ -23,7 +23,8 @@ public class Individual {
 
         int dist = simulator.getGrid().calculateDist(my_x, my_y);
         this.comfort = Math.pow((1 - ((this.cost - this.length + 2) / (simulator.getVariables().getC_max() * this.length + 3))),
-                simulator.getVariables().getK()) * Math.pow((1 - (dist / (simulator.getGrid().getN() + simulator.getGrid().getM() + 1))), simulator.getVariables().getK());
+                simulator.getVariables().getK()) * Math.pow((1 - (dist / (simulator.getGrid().getRows() + simulator
+                .getGrid().getCols() + 1))), simulator.getVariables().getK());
 
 		throw new UnsupportedOperationException();
 	}
@@ -36,7 +37,8 @@ public class Individual {
         this.simulator = simulator;
         int dist = simulator.getGrid().calculateDist(this.my_x, this.my_y);
         this.comfort = Math.pow((1 - ((this.cost - this.length + 2) / (simulator.getVariables().getC_max() * this.length + 3))),
-                simulator.getVariables().getK()) * Math.pow((1 - (dist / (simulator.getGrid().getN() + simulator.getGrid().getM() + 1))), simulator.getVariables().getK());
+                simulator.getVariables().getK()) * Math.pow((1 - (dist / (simulator.getGrid().getRows() + simulator
+                .getGrid().getCols() + 1))), simulator.getVariables().getK());
 		//this.path= {{0,0}};
 
 
