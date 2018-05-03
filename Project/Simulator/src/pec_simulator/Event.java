@@ -37,8 +37,5 @@ public abstract class Event {
 		return ref_pec;
 	}
 
-	public void setRef_pec(PEC ref_pec) {
-		this.ref_pec = ref_pec;
-	}
 
 }

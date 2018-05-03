@@ -2,7 +2,6 @@ package pec_simulator;
 
 public abstract class SimulationVariables {
     protected double k;
-    protected double v;
     protected double v_max;
     protected double c_max;
 
@@ -14,13 +13,7 @@ public abstract class SimulationVariables {
         this.k = k;
     }
 
-    public double getV() {
-        return v;
-    }
 
-    public void setV(double v) {
-        this.v = v;
-    }
 
     public double getV_max() {
         return v_max;

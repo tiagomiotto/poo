@@ -14,7 +14,10 @@ public class Death extends Event {
 			if (obj.getMe() == this.getMe()) getRef_pec().events.remove(obj);
 			// obj is the next ordered item in the queue
 		}
+		getMe().getSimulator().getPopulation().remove(getMe()); //Remove da população
+
 		this.setMe(null); //Kill object?
+
 		throw new UnsupportedOperationException();
 
 	}

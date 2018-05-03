@@ -1,6 +1,8 @@
 package pec_simulator;
 
 
+import java.util.PriorityQueue;
+
 public class Individual {
 
 	private double comfort;
@@ -8,11 +10,11 @@ public class Individual {
 	private int length;
 	private int my_x;
 	private int my_y;
-    private int[][] path;
+	private int[][] path = {{0, 0}};
     private int possibilities;
     private Simulator simulator;
 
-    void evolve() {
+	void evolve() { //For move
         // TODO - implement Evolution
         this.length += 1;
         path[length - 1][0] = my_x;
@@ -35,9 +37,12 @@ public class Individual {
         int dist = simulator.getGrid().calculateDist(this.my_x, this.my_y);
         this.comfort = Math.pow((1 - ((this.cost - this.length + 2) / (simulator.getVariables().getC_max() * this.length + 3))),
                 simulator.getVariables().getK()) * Math.pow((1 - (dist / (simulator.getGrid().getN() + simulator.getGrid().getM() + 1))), simulator.getVariables().getK());
+		//this.path= {{0,0}};
+
+
 	}
 
-    public Individual(Individual o1) {
+	public Individual(Individual o1) { //Construtor para reprodução
         //TODO construct from a parent individual
         double percentage = Math.ceil(90 + o1.getComfort() * 10);
         this.length = (int) Math.ceil(percentage / 100 * o1.getLength());
@@ -51,6 +56,7 @@ public class Individual {
         this.my_y = this.path[length - 1][1];
         this.cost = simulator.getGrid().calclulateCost(this.path);
 
+		//simulator.getPopulation().add(this);
     }
 
 

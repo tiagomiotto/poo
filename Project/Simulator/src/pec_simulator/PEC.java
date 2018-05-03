@@ -1,10 +1,12 @@
 package pec_simulator;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class PEC implements PECS {
 
-	PriorityQueue<Event> events;
+	Comparator<Event> ev = new EventComparator();
+	PriorityQueue<Event> events = new PriorityQueue<>(10, ev);
 	//Simulator simulator;
 
 	/**
