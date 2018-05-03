@@ -1,4 +1,4 @@
-package simulator;
+package pec_simulator;
 
 public class Edge {
     private Point adjacent;

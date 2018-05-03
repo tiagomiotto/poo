@@ -1,4 +1,4 @@
-package simulator;
+package pec_simulator;
 
 import java.util.Objects;
 

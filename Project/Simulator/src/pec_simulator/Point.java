@@ -1,8 +1,9 @@
-package simulator;
+package pec_simulator;
 
 import java.util.LinkedList;
 
 public class Point extends Coordinates {
+
     private LinkedList<Edge> listAdj = new LinkedList<Edge>();
 
     // constructor

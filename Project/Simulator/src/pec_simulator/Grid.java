@@ -1,4 +1,4 @@
-package simulator;
+package pec_simulator;
 
 import javax.swing.text.Position;
 import java.util.Arrays;
@@ -61,8 +61,8 @@ public class Grid {
                     }
                 }
             }
-            return outString;
         }
+        return outString;
     }
 
     // getter de um Point da gridMatrix correspondente às Coordinates dadas

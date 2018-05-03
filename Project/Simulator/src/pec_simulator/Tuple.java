@@ -1,4 +1,4 @@
-package simulator;
+package pec_simulator;
 
 public class Tuple {
     private Coordinates iCoord, fCoord;
