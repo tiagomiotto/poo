@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE total SYSTEM "total.dtd">
+<total>
+
+<journalist>
+    <name>Ola Nordmann</name>
+</journalist>
+<title>O dia</title>
+<local>
+ <name>Lisboa</name>
+</local>
+<date>21/02/2019</date>
+
+<subtitle>Subtitle</subtitle>
+<resume>
+ <body>
+	Resumo teste
+ </body>
+</resume>
+
+<article>
+ <body>
+	Artigo de testes
+ </body>
+</article>
+
+
+</total> 

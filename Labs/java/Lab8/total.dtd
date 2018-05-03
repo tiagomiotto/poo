@@ -1,0 +1,41 @@
+<?xml encoding="UTF-8"?>
+
+<!ELEMENT total (journalist,title,local,date,subtitle?,resume?,article)>
+<!ATTLIST total
+  xmlns CDATA #REQUIRED ''>
+
+<!ELEMENT journalist (name)>
+<!ATTLIST journalist
+  xmlns CDATA #REQUIRED  ''>
+
+<!ELEMENT title (#PCDATA)>
+<!ATTLIST title
+  xmlns CDATA #REQUIRED ''>
+
+<!ELEMENT local (name)>
+<!ATTLIST local
+  xmlns CDATA #REQUIRED ''>
+
+<!ELEMENT date (#PCDATA)>
+<!ATTLIST date
+  xmlns CDATA #REQUIRED ''>
+
+<!ELEMENT subtitle (#PCDATA)>
+<!ATTLIST subtitle
+  xmlns CDATA #IMPLIED ''>
+
+<!ELEMENT resume (body)>
+<!ATTLIST resume
+  xmlns CDATA #IMPLIED ''>
+
+<!ELEMENT article (body)>
+<!ATTLIST article
+  xmlns CDATA #REQUIRED ''>
+
+<!ELEMENT name (#PCDATA)>
+<!ATTLIST name
+  xmlns CDATA #REQUIRED ''>
+
+<!ELEMENT body (#PCDATA)>
+<!ATTLIST body
+  xmlns CDATA #REQUIRED ''>
