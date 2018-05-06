@@ -242,6 +242,10 @@ public class Grid {
         //TODO cost calculator
         int i, cost = 0;
         
+        for(i=0; i<length-1; i++) {
+        	cost = cost +  gridMatrix[path.get(i).getX()][path.get(i).getY()].getAdjCost(gridMatrix[path.get(i+1).getX()][path.get(i+1).getY()]);
+        }
+        
         
         return cost;
     }
