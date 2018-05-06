@@ -52,7 +52,7 @@ public class Dom {
 			if(p2.getNodeType()==Node.ELEMENT_NODE) {
 				Element init_P = (Element) p2;
 				grid_var.getInitCoord().setX(Integer.parseInt(init_P.getAttribute("xinitial")));
-				grid_var.getInitCoord().getY(init_P.getAttribute("yinitial"));
+				grid_var.getInitCoord().setY(Integer.parseInt(init_P.getAttribute("yinitial")));
 			}
 			/*-----GET FINAL POINTS-------*/
 			NodeList finalP = doc.getElementsByTagName("finalpoint");
