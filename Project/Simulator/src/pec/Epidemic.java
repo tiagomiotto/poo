@@ -27,7 +27,7 @@ public class Epidemic extends Event {
 
 				while (!pqCopy.isEmpty()) { //Remove os eventos do individuo que vai morrer
 					Event obj2 = evCpy.poll();
-					if (obj2.getMe() == obj) getRef_pec().events.remove(obj);
+                    if (obj2.getMe() == obj) getRef_pec().events.remove(obj2);
 				}
 				getMe().getSimulator().getPopulation().remove(obj); //Tira da população
 			}
@@ -35,15 +35,9 @@ public class Epidemic extends Event {
 		}
 
 
-        throw new UnsupportedOperationException();
     }
 
-
-	public double generateTimestamp() {
-		return 0;
-	}
-
-	public Epidemic(Individual me, PEC ref_pec) {
+    Epidemic(Individual me, PEC ref_pec) {
 		super(me, 0, ref_pec);
 	}
 }
