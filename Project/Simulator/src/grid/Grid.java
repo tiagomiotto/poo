@@ -106,6 +106,7 @@ public class Grid {
         return outString;
     }
 
+
     // getter de um Point da gridMatrix correspondente às Coordinates dadas
     public Point getPoint (Coordinates aCoord) {
         return gridMatrix[aCoord.getX()][aCoord.getY()];
