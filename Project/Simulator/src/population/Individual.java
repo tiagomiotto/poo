@@ -79,7 +79,7 @@ public class Individual {
 			String my_pos = "(" + a.getX() + "," + a.getY() + ")" + "->";
 			aux.append(my_pos);
 		}
-		return aux.toString();
+		return aux.toString(); //funt
 	}
 
 
