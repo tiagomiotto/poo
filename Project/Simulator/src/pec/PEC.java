@@ -20,13 +20,15 @@ public class PEC implements PECS {
 		throw new UnsupportedOperationException();
 	}
 
-	public void nextEventPEC() {
+	public Event nextEventPEC() {
 		// TODO - implement PEC.nextEventPEC
 		Event aux;
 		aux=events.poll();
 		aux.simulateEvent();
-		throw new UnsupportedOperationException();
+		return aux;
 	}
 
-
+	public PriorityQueue<Event> getEvents() {
+		return events;
+	}
 }

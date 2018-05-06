@@ -123,4 +123,8 @@ public class Individual {
     public Simulator getSimulator() {
         return simulator;
     }
+
+	public int getCost() {
+		return cost;
+	}
 }
