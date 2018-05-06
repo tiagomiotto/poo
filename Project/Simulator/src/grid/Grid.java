@@ -241,6 +241,8 @@ public class Grid {
     public int cost(List<Coordinates> path, int length) {
         //TODO cost calculator
         int i, cost = 0;
+        
+        
         return cost;
     }
 
