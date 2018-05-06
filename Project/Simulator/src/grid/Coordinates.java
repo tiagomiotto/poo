@@ -1,4 +1,4 @@
-package pec_simulator;
+package grid;
 
 import java.util.Objects;
 
@@ -7,7 +7,7 @@ public class Coordinates {
     int y;
 
     // constructor
-    Coordinates (int xCoord, int yCoord) {
+    public Coordinates(int xCoord, int yCoord) {
         this.x = xCoord;
         this.y = yCoord;
     }
@@ -36,8 +36,18 @@ public class Coordinates {
                 y == that.y;
     }
 
+
     @Override
     public int hashCode() {
         return Objects.hash(x, y);
     }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
 }
+

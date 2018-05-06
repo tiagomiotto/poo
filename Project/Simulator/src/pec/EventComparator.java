@@ -1,4 +1,4 @@
-package pec_simulator;
+package pec;
 
 import java.util.Comparator;
 

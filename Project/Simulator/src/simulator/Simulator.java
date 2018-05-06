@@ -1,7 +1,12 @@
-package pec_simulator;
+package simulator;
+
+import grid.Grid;
+import pec.Event;
+import pec.EventVariables;
+import pec.PEC;
+import population.Individual;
 
 import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 public class Simulator {

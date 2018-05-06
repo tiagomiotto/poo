@@ -1,4 +1,4 @@
-package pec_simulator;
+package grid;
 
 public class Tuple {
     private Coordinates iCoord, fCoord;

@@ -1,12 +1,11 @@
-package pec_simulator;
+package grid;
 
-import javax.swing.text.Position;
-import java.util.Arrays;
-
+import java.util.List;
 public class Grid {
     private int cols;
     private int rows;
     private Point[][] gridMatrix;
+    private Coordinates initCoord, finCoord;
     /*
     private Tuple[] tuples;
     private Point[] obstacles;
@@ -190,4 +189,16 @@ public class Grid {
         // preenche os pontos adjacentes de cada ponto da gridMatrix
         this.fillGridAdj();
     }
+
+    // calcula a distância até ao ponto final
+    public double dist (Coordinates coord) {
+        return Math.sqrt(Math.pow(this.finCoord.getX()-coord.getX(),2) + Math.pow(this.finCoord.getY()-coord.getY(),2));
+    }
+
+    public int cost(List<Coordinates> path, int length) {
+        //TODO cost calculator
+        int i, cost = 0;
+        return cost;
+    }
+
 }
