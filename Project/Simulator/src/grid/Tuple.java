@@ -11,7 +11,11 @@ public class Tuple {
         this.cost = cost;
     }
 
-    // getters
+    public void setCost(int cost) {
+		this.cost = cost;
+	}
+
+	// getters
     public Coordinates getiCoord() {
         return iCoord;
     }

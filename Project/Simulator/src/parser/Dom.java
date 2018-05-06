@@ -12,6 +12,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import grid.Coordinates;
 import grid.Grid;
 import grid.Tuple;
 import pec.EventVariables;
@@ -19,7 +20,7 @@ import simulator.SimulationVariables;
 
 public class Dom {
 
-	public void parser(EventVariables event_var, Grid grid_var, SimulationVariables sim_var, Tuple tuple_var) {
+	public void parser(EventVariables event_var, Grid grid_var, SimulationVariables sim_var, Tuple[] tuple_var, Coordinates[] obst_var) {
 		// TODO Auto-generated method stub
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try {
@@ -72,23 +73,20 @@ public class Dom {
 				NodeList zone = doc.getElementsByTagName("zone");
 				
 				int num1 = Integer.parseInt(nume);
-				String[] xinitial = new String[num1];
-				String[] yinitial = new String[num1];
-				String[] xfinal = new String[num1];
-				String[] yfinal = new String[num1];
-				String[] c = new String[num1];
-				for(int m=0;m<num1;m++) {
+				for(int m=0;m<num1-1;m++) {
 					Node spec = zone.item(m);
 					if(spec.getNodeType()==Node.ELEMENT_NODE) {
 						Element speci = (Element) spec;
-						xinitial[m] = speci.getAttribute("xinitial");
-						yinitial[m] = speci.getAttribute("yinitial");
-						xfinal[m] = speci.getAttribute("xfinal");
-						yfinal[m] = speci.getAttribute("yfinal");
-						c[m]=speci.getTextContent();
+						tuple_var[m].getiCoord().setX(Integer.parseInt(speci.getAttribute("xinitial"))); ;
+						tuple_var[m].getiCoord().setY(Integer.parseInt(speci.getAttribute("yinitial")));
+						tuple_var[m].getfCoord().setX(Integer.parseInt(speci.getAttribute("xfinal")));
+						tuple_var[m].getfCoord().setY(Integer.parseInt(speci.getAttribute("yfinal")));
+						tuple_var[m].setCost(Integer.parseInt(speci.getTextContent()));
 					}
+					
 				}
 			}
+	
 			/*-----GET OBSTACLES-------*/
 			NodeList Obs = doc.getElementsByTagName("obstacles");
 			Node p5 = Obs.item(0);
@@ -97,18 +95,18 @@ public class Dom {
 				String numer = Ob_s.getAttribute("num");
 				
 				int num2 = Integer.parseInt(numer);
-				String[] xpos = new String[num2];
-				String[] ypos = new String[num2];
+				
 				NodeList obst = doc.getElementsByTagName("obstacle");
-				for(int u=0;u<num2;u++) {
+				for(int u=0;u<num2-1;u++) {
 					Node ob = obst.item(u);
 					if(ob.getNodeType()==Node.ELEMENT_NODE) {
 						Element obstacle = (Element) ob;
-						xpos[u] = obstacle.getAttribute("xpos");
-						ypos[u] = obstacle.getAttribute("ypos");
+						obst_var[u].setX(Integer.parseInt(obstacle.getAttribute("xpos")));
+						obst_var[u].setY(Integer.parseInt(obstacle.getAttribute("ypos")));
 					}
 				}
 			}
+
 			/*-----GET EVENT PARAMETERS-------*/
 			/*-----DEATH PARAMETER------------*/
 			NodeList DEATH = doc.getElementsByTagName("death");
@@ -147,14 +145,3 @@ public class Dom {
 	}
 
 }
-
-
-/*
- NodeList special = 
- for(int j=0; j<childlist.getLength();j++) {
-Node child = childlist.item(j);
-if(child.getNodeType()==Node.ELEMENT_NODE) {
-	Element chil = (Element) child;
-	System.out.println("Something " + finalinst + chil.getTagName());
-}
-}*/
