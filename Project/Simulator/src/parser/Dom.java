@@ -20,7 +20,8 @@ import simulator.SimulationVariables;
 
 public class Dom {
 
-	public void parser(EventVariables event_var, Grid grid_var, SimulationVariables sim_var, Tuple[] tuple_var, Coordinates[] obst_var) {
+	public void parser(EventVariables event_var, Grid grid_var, Tuple[] tuple_var,
+					   Coordinates[] obst_var) {
 		// TODO Auto-generated method stub
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try {
@@ -32,10 +33,10 @@ public class Dom {
 				Node p = SIMULATION.item(i);
 				if(p.getNodeType()==Node.ELEMENT_NODE) {
 					Element sim = (Element) p;
-					sim_var.setC_max(Double.parseDouble(sim.getAttribute("finalinst")));
-					sim_var.setV_init(Double.parseDouble(sim.getAttribute("initpop")));
-					sim_var.setV_max(Double.parseDouble(sim.getAttribute("maxpop")));
-					sim_var.setK(Double.parseDouble(sim.getAttribute("comfortsens"))); 
+					event_var.setC_max(Double.parseDouble(sim.getAttribute("finalinst")));
+					event_var.setV_init(Double.parseDouble(sim.getAttribute("initpop")));
+					event_var.setV_max(Double.parseDouble(sim.getAttribute("maxpop")));
+					event_var.setK(Double.parseDouble(sim.getAttribute("comfortsens")));
 				}
 			}
 			/*-----GET GRID VALUES-------*/
@@ -64,6 +65,7 @@ public class Dom {
 				grid_var.getFinCoord().setY(Integer.parseInt(finit_P.getAttribute("yfinal"))); 
 			}
 			/*-----GET SPECIAL COST ZONES-------*/
+
 			NodeList SpecZ = doc.getElementsByTagName("specialcostzones");
 			Node p4 = SpecZ.item(0);
 			if(p4.getNodeType()==Node.ELEMENT_NODE) {
@@ -77,7 +79,7 @@ public class Dom {
 					Node spec = zone.item(m);
 					if(spec.getNodeType()==Node.ELEMENT_NODE) {
 						Element speci = (Element) spec;
-						tuple_var[m].getiCoord().setX(Integer.parseInt(speci.getAttribute("xinitial"))); ;
+						tuple_var[m].getiCoord().setX(Integer.parseInt(speci.getAttribute("xinitial")));
 						tuple_var[m].getiCoord().setY(Integer.parseInt(speci.getAttribute("yinitial")));
 						tuple_var[m].getfCoord().setX(Integer.parseInt(speci.getAttribute("xfinal")));
 						tuple_var[m].getfCoord().setY(Integer.parseInt(speci.getAttribute("yfinal")));
