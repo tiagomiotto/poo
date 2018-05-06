@@ -22,15 +22,57 @@ public class Grid {
         this.gridMatrix = new Point[cols][rows];
     }
 
-    // getters
-    public int getCols() {
-        return cols;
-    }
-    public int getRows() {
-        return rows;
-    }
 
-    // toString description
+
+    public Coordinates getInitCoord() {
+		return initCoord;
+	}
+
+
+
+	public void setInitCoord(Coordinates initCoord) {
+		this.initCoord = initCoord;
+	}
+
+
+
+	public Coordinates getFinCoord() {
+		return finCoord;
+	}
+
+
+
+	public void setFinCoord(Coordinates finCoord) {
+		this.finCoord = finCoord;
+	}
+
+
+
+	public int getCols() {
+		return cols;
+	}
+
+
+
+	public void setCols(int cols) {
+		this.cols = cols;
+	}
+
+
+
+	public int getRows() {
+		return rows;
+	}
+
+
+
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+
+
+
+	// toString description
     @Override
     public String toString() {
         String outString = "Grid: ";
