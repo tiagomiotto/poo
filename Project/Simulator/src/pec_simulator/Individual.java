@@ -61,6 +61,19 @@ public class Individual {
 		//simulator.getPopulation().add(this);
     }
 
+	// adicionar uma descrição textual do caminho do individuo
+	/*
+	public String getPathDesc () {
+
+	}
+	 */
+
+	// adicionar um ponto ao caminho
+	/*
+	public void addPointPath (Point aPoint) {
+
+	}
+	 */
 
 
 	/*Getters and setters*/
