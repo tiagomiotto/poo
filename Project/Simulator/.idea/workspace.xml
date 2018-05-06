@@ -4,10 +4,8 @@
     <bookmark url="file://$PROJECT_DIR$/src/population/Individual.java" line="21" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acd55bcf-949d-46bc-8dde-2bf496d6c7ec" name="Default" comment="Updates">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="acd55bcf-949d-46bc-8dde-2bf496d6c7ec" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/grid/Grid.java" afterPath="$PROJECT_DIR$/src/grid/Grid.java" />
       <change beforePath="$PROJECT_DIR$/src/population/Individual.java" afterPath="$PROJECT_DIR$/src/population/Individual.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -80,8 +78,8 @@
       <file leaf-file-name="Individual.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/population/Individual.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="42" column="29" lean-forward="true" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+            <state relative-caret-position="759">
+              <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -473,7 +471,14 @@
       <option name="project" value="LOCAL" />
       <updated>1525610876579</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Updates">
+      <created>1525634187001</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1525634187002</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TodoView">
@@ -928,8 +933,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/population/Individual.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="42" column="29" lean-forward="true" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+        <state relative-caret-position="759">
+          <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
