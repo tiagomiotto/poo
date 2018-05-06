@@ -71,11 +71,17 @@ public class Individual {
     }
 
 	// adicionar uma descrição textual do caminho do individuo
-	/*
+
 	public String getPathDesc () {
 
+		StringBuffer aux = new StringBuffer();
+		for (Coordinates a : path) {
+			String my_pos = "(" + a.getX() + "," + a.getY() + ")" + "->";
+			aux.append(my_pos);
+		}
+		return aux.toString();
 	}
-	 */
+
 
 	// adicionar um ponto ao caminho
 	/*
