@@ -1,7 +1,10 @@
-package pec_simulator;
+package pec;
+
+import population.Individual;
 
 import java.util.PriorityQueue;
 import java.util.Random;
+
 
 public class Death extends Event {
 

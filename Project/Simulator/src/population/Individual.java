@@ -1,45 +1,56 @@
-package pec_simulator;
+package population;
+
+import grid.Coordinates;
+import grid.Point;
+import simulator.Simulator;
 
 
-import java.util.PriorityQueue;
+import java.util.ArrayList;
 
 public class Individual {
 
 	private double comfort;
 	private int cost;
 	private int length;
-	private int my_x;
-	private int my_y;
-	private int[][] path = {{0, 0}};
+	private Point current;
+	private ArrayList<Coordinates> path;
     private int possibilities;
     private Simulator simulator;
 
-	void evolve() { //For move
+	public void evolve(int new_x, int new_y) { //For move
         // TODO - implement Evolution
-        this.length += 1;
-        path[length - 1][0] = my_x;
-        path[length - 1][1] = my_y;
-        this.cost = simulator.getGrid().calclulateCost(path);
+		current.setX(new_x);
+		current.setY(new_y);
+		if (path.contains(current)) { //Caso já exista no path
+			int l_aux = path.indexOf(current);
+			path = new ArrayList<Coordinates>(path.subList(0, l_aux + 1));
+		} else {
+			this.length += 1;
+			path.add(current);
+		}
+		this.cost = simulator.getGrid().cost(path, length);
 
-        int dist = simulator.getGrid().calculateDist(my_x, my_y);
+		double dist = simulator.getGrid().dist(new Coordinates(current.getX(), current.getY()));
         this.comfort = Math.pow((1 - ((this.cost - this.length + 2) / (simulator.getVariables().getC_max() * this.length + 3))),
                 simulator.getVariables().getK()) * Math.pow((1 - (dist / (simulator.getGrid().getRows() + simulator
                 .getGrid().getCols() + 1))), simulator.getVariables().getK());
 
+
+		this.possibilities = current.getAdjNum();
 		throw new UnsupportedOperationException();
 	}
 
     public Individual(Simulator simulator) {
         this.cost = 0;
         this.length = 0;
-        this.my_x = 0;
-        this.my_y = 0;
+		this.current = new Point(1, 1);
+		path = new ArrayList<Coordinates>();
         this.simulator = simulator;
-        int dist = simulator.getGrid().calculateDist(this.my_x, this.my_y);
+		this.possibilities = current.getAdjNum();
+		double dist = simulator.getGrid().dist(new Coordinates(current.getX(), current.getY()));
         this.comfort = Math.pow((1 - ((this.cost - this.length + 2) / (simulator.getVariables().getC_max() * this.length + 3))),
                 simulator.getVariables().getK()) * Math.pow((1 - (dist / (simulator.getGrid().getRows() + simulator
                 .getGrid().getCols() + 1))), simulator.getVariables().getK());
-		//this.path= {{0,0}};
 
 
 	}
@@ -48,17 +59,15 @@ public class Individual {
         //TODO construct from a parent individual
         double percentage = Math.ceil(90 + o1.getComfort() * 10);
         this.length = (int) Math.ceil(percentage / 100 * o1.getLength());
-        int[][] aux = o1.getPath();
-
-        for (int i = 0; i < this.length; i++)
-            for (int j = 0; j < 2; j++)
-                this.path[i][j] = aux[i][j];
-
-        this.my_x = this.path[length - 1][0];
-        this.my_y = this.path[length - 1][1];
-        this.cost = simulator.getGrid().calclulateCost(this.path);
-
-		//simulator.getPopulation().add(this);
+		path = new ArrayList<Coordinates>(o1.getPath().subList(0, this.length + 1));
+		this.current = new Point((this.path.get(this.length).getX()), this.path.get(this.length).getY());
+		this.cost = simulator.getGrid().cost(this.path, this.length);
+		this.possibilities = current.getAdjNum();
+		this.simulator = o1.simulator;
+		double dist = simulator.getGrid().dist(new Coordinates(current.getX(), current.getY()));
+		this.comfort = Math.pow((1 - ((this.cost - this.length + 2) / (simulator.getVariables().getC_max() * this.length + 3))),
+				simulator.getVariables().getK()) * Math.pow((1 - (dist / (simulator.getGrid().getRows() + simulator
+				.getGrid().getCols() + 1))), simulator.getVariables().getK());
     }
 
 	// adicionar uma descrição textual do caminho do individuo
@@ -81,51 +90,27 @@ public class Individual {
 		return comfort;
 	}
 
-	public void setComfort(float comfort) {
-		this.comfort = comfort;
-	}
 
 	public int getPossibilities() {
 		return possibilities;
-	}
-
-	public void setPossibilities(int possibilities) {
-		this.possibilities = possibilities;
-	}
-
-	public int getCost() {
-		return cost;
-	}
-
-	public void setCost(int cost) {
-		this.cost = cost;
 	}
 
 	public int getLength() {
 		return length;
 	}
 
-	public void setLength(int length) {
-		this.length = length;
-	}
 
 	public int getMy_x() {
-		return my_x;
+		return current.getX();
 	}
 
-	public void setMy_x(int my_x) {
-		this.my_x = my_x;
-	}
 
 	public int getMy_y() {
-		return my_y;
+		return current.getY();
 	}
 
-	public void setMy_y(int my_y) {
-		this.my_y = my_y;
-	}
 
-    public int[][] getPath() {
+	public ArrayList<Coordinates> getPath() {
         return path;
     }
 

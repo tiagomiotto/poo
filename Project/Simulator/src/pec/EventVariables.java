@@ -1,4 +1,6 @@
-package pec_simulator;
+package pec;
+
+import simulator.SimulationVariables;
 
 public class EventVariables extends SimulationVariables {
     //TODO - stores the simulation variables to be accessible by the events
@@ -18,12 +20,12 @@ public class EventVariables extends SimulationVariables {
         return delta;
     }
 
-    public EventVariables(double miu, double p, double delta, double v_max, double v, double k) {
+    public EventVariables(double miu, double p, double delta, double v_max, double k) {
         this.miu = miu;
         this.p = p;
         this.delta = delta;
         super.setK(k);
-        super.setV(v);
+
         super.setV_max(v_max);
     }
 }

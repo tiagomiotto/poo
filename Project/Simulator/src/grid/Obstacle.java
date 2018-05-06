@@ -1,4 +1,4 @@
-package pec_simulator;
+package grid;
 
 public class Obstacle extends Point {
 

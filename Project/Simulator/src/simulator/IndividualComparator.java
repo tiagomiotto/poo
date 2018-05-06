@@ -1,4 +1,6 @@
-package pec_simulator;
+package simulator;
+
+import population.Individual;
 
 import java.util.Comparator;
 

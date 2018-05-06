@@ -1,4 +1,4 @@
-package pec_simulator;
+package simulator;
 
 public abstract class SimulationVariables {
     protected double k;

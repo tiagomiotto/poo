@@ -1,5 +1,7 @@
-package pec_simulator;
+package pec;
 
+
+import population.Individual;
 
 public abstract class Event {
 

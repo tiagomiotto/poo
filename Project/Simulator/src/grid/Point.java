@@ -1,4 +1,4 @@
-package pec_simulator;
+package grid;
 
 import java.util.LinkedList;
 
@@ -49,5 +49,9 @@ public class Point extends Coordinates {
                 edge.setCost(costAdj);
             }
         }
+    }
+
+    public int getAdjNum() {
+        return listAdj.size();
     }
 }
