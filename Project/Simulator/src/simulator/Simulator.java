@@ -1,6 +1,9 @@
 package simulator;
 
+import grid.Coordinates;
 import grid.Grid;
+import grid.Tuple;
+import parser.Dom;
 import pec.*;
 import population.Individual;
 
@@ -23,6 +26,7 @@ public class Simulator {
 
 
 
+
 	public void main() {
 		// TODO - implement Simulator.main
 		currentTime = 0.0;
@@ -32,6 +36,7 @@ public class Simulator {
 
 		pec = new PEC();
 		begin();
+		createGrid();
 		currentEv = pec.getEvents().peek();
 		currentTime = currentEv.getTimestamp();
 
@@ -86,5 +91,14 @@ public class Simulator {
 
 	public PEC getPec() {
 		return pec;
+	}
+
+	private void createGrid() {
+		Dom parse = new Dom();
+		Tuple[] tuples = new Tuple[100];
+		Coordinates[] obst = new Coordinates[100];
+		parse.parser(variables, grid, tuples, obst);
+		grid.fillGridTuples(tuples);
+		grid.buildGrid(obst);
 	}
 }
