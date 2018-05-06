@@ -5,23 +5,25 @@ public class Tuple {
     private int cost;
 
     // constructor
-    Tuple (Coordinates initCoord, Coordinates finCoord, int cost) {
+    Tuple(Coordinates initCoord, Coordinates finCoord, int cost) {
         this.iCoord = initCoord;
         this.fCoord = finCoord;
         this.cost = cost;
     }
 
     public void setCost(int cost) {
-		this.cost = cost;
-	}
+        this.cost = cost;
+    }
 
-	// getters
+    // getters
     public Coordinates getiCoord() {
         return iCoord;
     }
+
     public Coordinates getfCoord() {
         return fCoord;
     }
+
     public int getCost() {
         return cost;
     }

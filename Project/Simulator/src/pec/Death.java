@@ -26,9 +26,9 @@ public class Death extends Event {
 	}
 
 	public final double generateTimestamp() {
-		Random rand= new Random();
+		Random rand = new Random();
 		double lambda = (1 - Math.log(getMe().getComfort())) * getMe().getSimulator().getVariables().getMiu();
-		return Math.log(1-rand.nextDouble())/(-lambda);
+		return Math.log(1 - rand.nextDouble()) / (-lambda);
 	}
 
 	public Death(Individual me, double timestamp, PEC ref_pec) {

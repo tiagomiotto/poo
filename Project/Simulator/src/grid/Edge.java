@@ -5,7 +5,7 @@ public class Edge {
     private int cost = -1;
 
     // constructor
-    Edge (Point adjacent, int cost) {
+    Edge(Point adjacent, int cost) {
         this.adjacent = adjacent;
         this.cost = cost;
     }
@@ -14,6 +14,7 @@ public class Edge {
     public Point getAdjacent() {
         return adjacent;
     }
+
     public int getCost() {
         return cost;
     }

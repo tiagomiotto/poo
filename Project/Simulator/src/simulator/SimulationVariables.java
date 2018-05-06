@@ -1,11 +1,11 @@
 package simulator;
 
 public abstract class SimulationVariables {
-    protected double k;			//confortsens
-    protected double v_max;		//maxpop
-    protected double c_max;		//finalinst
-    protected double v_init;	//initpop
-    	
+    protected double k;            //confortsens
+    protected double v_max;        //maxpop
+    protected double c_max;        //finalinst
+    protected double v_init;    //initpop
+
 
     public double getK() {
         return k;
@@ -16,16 +16,15 @@ public abstract class SimulationVariables {
     }
 
 
-
     public double getV_init() {
-		return v_init;
-	}
+        return v_init;
+    }
 
-	public void setV_init(double v_init) {
-		this.v_init = v_init;
-	}
+    public void setV_init(double v_init) {
+        this.v_init = v_init;
+    }
 
-	public double getV_max() {
+    public double getV_max() {
         return v_max;
     }
 

@@ -21,16 +21,16 @@ public class EventVariables extends SimulationVariables {
     }
 
     public void setMiu(double miu) {
-		this.miu = miu;
-	}
+        this.miu = miu;
+    }
 
-	public void setP(double p) {
-		this.p = p;
-	}
+    public void setP(double p) {
+        this.p = p;
+    }
 
-	public void setDelta(double delta) {
-		this.delta = delta;
-	}
+    public void setDelta(double delta) {
+        this.delta = delta;
+    }
 
     public EventVariables(double miu, double p, double delta, double v_max, double k, double c_max, double v_init) {
         this.miu = miu;
