@@ -117,10 +117,10 @@ public class Individual {
         int i;
         //System.out.println(path.get(1).getX());
         for (i = 0; i < path.size() - 1; i++) {
-            String my_pos = "(" + path.get(i).getX()+1 + "," + path.get(i).getY()+1 + ")" + "->";
+            String my_pos = "(" + (path.get(i).getX() + 1) + "," + (path.get(i).getY() + 1) + ")" + "->";
             aux += my_pos;
         }
-        String my_pos = "(" + path.get(i).getX()+1 + "," + path.get(i).getY()+1 + ")";
+        String my_pos = "(" + (path.get(i).getX() + 1) + "," + (path.get(i).getY() + 1) + ")";
         aux += my_pos;
 
 
@@ -129,6 +129,11 @@ public class Individual {
 
 
     /*Getters and setters*/
+
+    public boolean isEnded() {
+        return ended;
+    }
+
     public double getComfort() {
         return comfort;
     }

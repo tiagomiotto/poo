@@ -55,6 +55,7 @@ public class Simulator {
                 System.out.println("Final coordinates " + sim.grid.getFinCoord().getX() + "," + sim.getGrid()
                         .getFinCoord().getY());
                 System.out.println("Size of pop: " + sim.population.size());
+
                 System.out.println();
 
                 i++;
@@ -78,6 +79,7 @@ public class Simulator {
             System.out.println("Path of the best fit individual: " + sim.population
                     .peek()
                     .getPathDesc());
+            System.out.println("Finished: " + sim.population.peek().isEnded());
         }
 
     }
