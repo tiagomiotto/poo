@@ -15,14 +15,15 @@ public class PEC implements PECS {
     public void addEventPEC(Event o1) {
         // TODO - implement PEC.addEventPEC
         events.add(o1);
-        throw new UnsupportedOperationException();
+
+
     }
 
     public Event nextEventPEC() {
         // TODO - implement PEC.nextEventPEC
         Event aux;
         aux = events.poll();
-        aux.simulateEvent();
+        if (aux != null) aux.simulateEvent();
         return aux;
     }
 

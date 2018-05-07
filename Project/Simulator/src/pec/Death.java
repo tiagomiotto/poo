@@ -11,6 +11,7 @@ public class Death extends Event {
 
 	public void simulateEvent() {
 		// TODO - implement Death.simulateEvent
+		System.out.println("death");
 		PriorityQueue<Event> pqCopy = new PriorityQueue<Event>(getRef_pec().events);
 		while (!pqCopy.isEmpty()) { //Removes following events from PEC
 			Event obj = pqCopy.poll();
@@ -21,18 +22,19 @@ public class Death extends Event {
 
 		this.setMe(null); //Kill object?
 
-		throw new UnsupportedOperationException();
+
 
 	}
 
 	public final double generateTimestamp() {
 		Random rand = new Random();
 		double lambda = (1 - Math.log(getMe().getComfort())) * getMe().getSimulator().getVariables().getMiu();
-		return Math.log(1 - rand.nextDouble()) / (-lambda);
+		return (-lambda * Math.log(Math.random()));
 	}
 
 	public Death(Individual me, double timestamp, PEC ref_pec) {
 		super(me, timestamp, ref_pec);
 		super.setTimestamp(this.generateTimestamp());
+
 	}
 }

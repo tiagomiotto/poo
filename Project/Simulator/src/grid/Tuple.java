@@ -5,7 +5,7 @@ public class Tuple {
     private int cost;
 
     // constructor
-    Tuple(Coordinates initCoord, Coordinates finCoord, int cost) {
+    public Tuple(Coordinates initCoord, Coordinates finCoord, int cost) {
         this.iCoord = initCoord;
         this.fCoord = finCoord;
         this.cost = cost;

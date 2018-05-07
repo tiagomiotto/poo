@@ -7,6 +7,8 @@ import parser.Dom;
 import pec.*;
 import population.Individual;
 
+
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
@@ -24,48 +26,69 @@ public class Simulator {
     private int events;
 
 
-    public void main() {
+    public static void main(String args[]) {
         // TODO - implement Simulator.main
-        currentTime = 0.0;
+        Simulator sim = new Simulator();
+        sim.currentTime = 0.0;
         int observ = 0;
-        events = 0;
+        sim.events = 0;
         int i = 1;
+        sim.createGrid();
+        sim.pec = new PEC();
+        sim.begin();
 
-        pec = new PEC();
-        begin();
-        createGrid();
-        currentEv = pec.getEvents().peek();
-        currentTime = currentEv.getTimestamp();
+        sim.currentEv = sim.pec.getEvents().peek();
+        sim.currentTime = sim.currentEv.getTimestamp();
 
-        while (currentTime < variables.c_max) {
-            if (currentTime > variables.c_max * i / 20) {  //Observations
+        while (sim.currentTime < sim.variables.c_max) {
+            if (sim.currentTime > sim.variables.c_max * i / 20) {  //Observations
                 observ++;
                 System.out.println("Observation: " + observ);
-                System.out.println("Present instant: " + currentTime);
-                System.out.println("Number of realized events: " + events);
+                System.out.println("Present instant: " + sim.currentTime);
+                System.out.println("Number of realized events: " + sim.events);
 
-                if (winners.size() > 0) System.out.println("Final point has been hit? Yes");
+                if (sim.winners.size() > 0) System.out.println("Final point has been hit? Yes");
                 else System.out.println("Final point has been hit? No");
 
-                System.out.println("Path of the best fit individual: " + population.peek().getPathDesc());
-                System.out.println("Cost/Comfort " + population.peek().getCost() + "/" + population.peek().getComfort());
+                System.out.println("Path of the best fit individual: " + sim.population.peek().getPathDesc());
+                System.out.println("Cost/Comfort " + sim.population.peek().getCost() + "/" + sim.population.peek().getComfort());
+                System.out.println("Final coordinates " + sim.grid.getFinCoord().getX() + "," + sim.getGrid()
+                        .getFinCoord().getY());
+                System.out.println("Size of pop: " + sim.population.size());
+                System.out.println();
+
                 i++;
             }
-            currentEv = pec.nextEventPEC();
-            currentTime = currentEv.getTimestamp();
+            sim.currentEv = sim.pec.nextEventPEC();
+            if (sim.currentEv == null) {
+                System.out.println("PEC ran out of events at time: " + sim.currentTime);
+
+                break;
+            }
+            sim.currentTime = sim.currentEv.getTimestamp();
+            sim.events++;
         }
         //Final tally
-        if (winners.size() > 0) System.out.println("Path of the best fit individual: " + winners.peek().getPathDesc());
-        else System.out.println("Path of the best fit individual: " + population.peek().getPathDesc());
+        if (sim.winners.size() > 0) System.out.println("Path of the best fit winner: " + sim.winners.peek().getPathDesc
+                ());
+        else if (sim.population.peek() == null) {
+            System.out.println("Everyone died");
+        } else {
+            System.out.println("Simulation finished");
+            System.out.println("Path of the best fit individual: " + sim.population
+                    .peek()
+                    .getPathDesc());
+        }
+
     }
 
 
     private void begin() {
         for (int i = 0; i < variables.v_init; i++) {
             Individual firstborn = new Individual(this);
-            pec.addEventPEC(new Reproduction(firstborn, 1000, pec));
-            pec.addEventPEC(new Move(firstborn, 1000, pec));
-            pec.addEventPEC(new Death(firstborn, 1000, pec));
+            pec.addEventPEC(new Reproduction(firstborn, 0, pec));
+            pec.addEventPEC(new Move(firstborn, 0, pec));
+            pec.addEventPEC(new Death(firstborn, 0, pec));
             population.add(firstborn);
         }
     } //Create initial population
@@ -94,7 +117,12 @@ public class Simulator {
         Dom parse = new Dom();
         Tuple[] tuples = new Tuple[100];
         Coordinates[] obst = new Coordinates[100];
-        parse.parser(variables, grid, tuples, obst);
+        grid = new Grid(0, 0);
+        int n_obst = 0, n_tup = 0;
+        parse.parser(variables, grid, tuples, obst, n_obst, n_tup);
+        grid.updateGrid();
+        tuples = Arrays.copyOf(tuples, n_tup);
+        obst = Arrays.copyOf(obst, n_obst);
         grid.fillGridTuples(tuples);
         grid.buildGrid(obst);
     }

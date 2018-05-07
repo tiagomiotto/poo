@@ -8,15 +8,15 @@ public class EventVariables extends SimulationVariables {
     private double p;
     private double delta;
 
-    double getMiu() {
+    public double getMiu() {
         return miu;
     }
 
-    double getP() {
+    public double getP() {
         return p;
     }
 
-    double getDelta() {
+    public double getDelta() {
         return delta;
     }
 

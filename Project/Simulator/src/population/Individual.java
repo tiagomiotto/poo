@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Individual {
 
     private double comfort;
-    private int cost;
+    private int cost; //A função nao calcula certo porque o path ta sempre nulo
     private int length;
     private Point current;
     private ArrayList<Coordinates> path;
@@ -18,20 +18,30 @@ public class Individual {
     private Simulator simulator;
     private boolean ended = false;
 
-    public void evolve(int new_x, int new_y) { //For move
+    public void evolve(Point new_P) { //For move
         // TODO - implement Evolution
-        current.setX(new_x);
-        current.setY(new_y);
-        if (simulator.getGrid().getFinCoord().equals(current)) {
+        current.setX(new_P.getX());
+        current.setY(new_P.getY());
+
+        if (simulator.getGrid().getFinCoord().equals(new_P)) {
             ended = true;
             simulator.getWinners().add(this);
         }
-        if (path.contains(current)) { //Caso já exista no path
-            int l_aux = path.indexOf(current);
-            path = new ArrayList<Coordinates>(path.subList(0, l_aux + 1));
+        if (path.contains(new_P)) { //Ta mal aqui, ta sempre apagando o path
+            //System.out.println("a");
+            //System.out.println(path.toString());
+            //System.out.println(current.toString());
+            int l_aux = path.indexOf(new_P);
+            //System.out.println(l_aux);
+            ArrayList<Coordinates> auxiliar = new ArrayList<>(path);
+            path = new ArrayList<Coordinates>();
+            for (int i = 0; i < l_aux + 1; i++) path.add(auxiliar.get(i));
         } else {
+            //System.out.println("b");
             this.length += 1;
-            path.add(current);
+            path.add(new_P);
+
+
         }
         this.cost = simulator.getGrid().cost(path, length);
 
@@ -42,7 +52,7 @@ public class Individual {
                 .getGrid().getCols() + 1))), simulator.getVariables().getK());
 
 
-        this.possibilities = current.getAdjNum();
+        this.possibilities = simulator.getGrid().getPoint(current).getAdjNum();
 
     }
 
@@ -51,8 +61,9 @@ public class Individual {
         this.length = 0;
         this.current = new Point(1, 1);
         path = new ArrayList<Coordinates>();
+        path.add(new Coordinates(1, 1));
         this.simulator = simulator;
-        this.possibilities = current.getAdjNum();
+        this.possibilities = simulator.getGrid().getPoint(current).getAdjNum();
         double dist = simulator.getGrid().dist(new Coordinates(current.getX(), current.getY()));
         this.comfort = Math.pow((1 - ((this.cost - this.length + 2) / (simulator.getVariables().getC_max() * this.length + 3))),
                 simulator.getVariables().getK()) * Math.pow((1 - (dist / (simulator.getGrid().getRows() + simulator
@@ -66,14 +77,31 @@ public class Individual {
 
         //90% do caminho do pai +  uma variavel dependendo go conforto
         double percentage = Math.ceil(90 + o1.getComfort() * 10);
-        this.length = (int) Math.ceil(percentage / 100 * o1.getLength());
-        path = new ArrayList<Coordinates>(o1.getPath().subList(0, this.length + 1));
 
-        this.current = new Point((this.path.get(this.length).getX()), this.path.get(this.length).getY());
+        this.length = (int) Math.ceil(percentage / 100 * o1.path.size());
+        double auxlen = length;
+        if (this.length == 0 || o1.path.size() < 1) {
+            path = new ArrayList<Coordinates>();
+            path.add(new Point(1, 1));
+            this.current = new Point(1, 1);
+        } else {
+            this.path = new ArrayList<Coordinates>();
+            for (int i = 0; i < auxlen; i++) path.add(o1.path.get(i)); //da erro aqui
+            if (path.size() == 1)
+                this.current = new Point((this.path.get(path.size() - 1).getX()), this.path.get(path.size
+                        () - 1
+                ).getY
+                        ());
+            else this.current = new Point((this.path.get(path.size() - 1).getX()), this.path.get(path.size() - 1
+            ).getY
+                    ());
+        }
 
-        this.cost = simulator.getGrid().cost(this.path, this.length);
-        this.possibilities = current.getAdjNum();
         this.simulator = o1.simulator;
+        this.cost = simulator.getGrid().cost(this.path, this.length);
+        this.possibilities = simulator.getGrid().getPoint(current).getAdjNum()
+        ; //da erro aqui
+
         ended = o1.ended;
         double dist = simulator.getGrid().dist(new Coordinates(current.getX(), current.getY()));
         this.comfort = Math.pow((1 - ((this.cost - this.length + 2) / (simulator.getVariables().getC_max() * this.length + 3))),
@@ -85,12 +113,18 @@ public class Individual {
 
     public String getPathDesc() {
 
-        StringBuffer aux = new StringBuffer();
-        for (Coordinates a : path) {
-            String my_pos = "(" + a.getX() + "," + a.getY() + ")" + "->";
-            aux.append(my_pos);
+        String aux = "";
+        int i;
+        //System.out.println(path.get(1).getX());
+        for (i = 0; i < path.size() - 1; i++) {
+            String my_pos = "(" + path.get(i).getX() + "," + path.get(i).getY() + ")" + "->";
+            aux += my_pos;
         }
-        return aux.toString(); //funt
+        String my_pos = "(" + path.get(i).getX() + "," + path.get(i).getY() + ")";
+        aux += my_pos;
+
+
+        return aux; //funt
     }
 
 
@@ -129,5 +163,9 @@ public class Individual {
 
     public int getCost() {
         return cost;
+    }
+
+    public Point getCurrent() {
+        return current;
     }
 }

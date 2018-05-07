@@ -17,12 +17,12 @@ import grid.Coordinates;
 import grid.Grid;
 import grid.Tuple;
 import pec.EventVariables;
-import simulator.SimulationVariables;
+
 
 public class Dom {
 
     public void parser(EventVariables event_var, Grid grid_var, Tuple[] tuple_var,
-                       Coordinates[] obst_var) {
+                       Coordinates[] obst_var, int n_tup, int n_obst) {
         // TODO Auto-generated method stub
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
@@ -76,10 +76,12 @@ public class Dom {
                 NodeList zone = doc.getElementsByTagName("zone");
 
                 int num1 = Integer.parseInt(nume);
+                n_tup = num1;
                 for (int m = 0; m < num1 - 1; m++) {
                     Node spec = zone.item(m);
                     if (spec.getNodeType() == Node.ELEMENT_NODE) {
                         Element speci = (Element) spec;
+                        tuple_var[m] = new Tuple(null, null, 0);
                         tuple_var[m].getiCoord().setX(Integer.parseInt(speci.getAttribute("xinitial")));
                         tuple_var[m].getiCoord().setY(Integer.parseInt(speci.getAttribute("yinitial")));
                         tuple_var[m].getfCoord().setX(Integer.parseInt(speci.getAttribute("xfinal")));
@@ -98,12 +100,13 @@ public class Dom {
                 String numer = Ob_s.getAttribute("num");
 
                 int num2 = Integer.parseInt(numer);
-
+                n_obst = num2;
                 NodeList obst = doc.getElementsByTagName("obstacle");
                 for (int u = 0; u < num2 - 1; u++) {
                     Node ob = obst.item(u);
                     if (ob.getNodeType() == Node.ELEMENT_NODE) {
                         Element obstacle = (Element) ob;
+                        obst_var[u] = new Coordinates(0, 0);
                         obst_var[u].setX(Integer.parseInt(obstacle.getAttribute("xpos")));
                         obst_var[u].setY(Integer.parseInt(obstacle.getAttribute("ypos")));
                     }
@@ -117,6 +120,7 @@ public class Dom {
             if (p6.getNodeType() == Node.ELEMENT_NODE) {
                 Element d_param = (Element) p6;
                 event_var.setMiu(Double.parseDouble(d_param.getAttribute("param")));
+
             }
             /*-----REPRODUCTION PARAMETER------------*/
             NodeList REP = doc.getElementsByTagName("reproduction");
@@ -124,6 +128,7 @@ public class Dom {
             if (p6.getNodeType() == Node.ELEMENT_NODE) {
                 Element r_param = (Element) p7;
                 event_var.setP(Double.parseDouble(r_param.getAttribute("param")));
+
             }
             /*-----MOVE PARAMETER------------*/
             NodeList MOV = doc.getElementsByTagName("move");
@@ -131,6 +136,7 @@ public class Dom {
             if (p6.getNodeType() == Node.ELEMENT_NODE) {
                 Element m_param = (Element) p8;
                 event_var.setDelta(Double.parseDouble(m_param.getAttribute("param")));
+
             }
 
 

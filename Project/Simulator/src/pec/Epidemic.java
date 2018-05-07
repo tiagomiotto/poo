@@ -9,7 +9,7 @@ public class Epidemic extends Event {
 
     public void simulateEvent() {
         // TODO - implement Epidemic.simulateEvent
-
+        System.out.println("epidemic");
         PriorityQueue<Individual> pqCopy = new PriorityQueue<Individual>(getMe().getSimulator().getPopulation());
         int i = 0;
         Random rand = new Random();

@@ -54,4 +54,8 @@ public class Point extends Coordinates {
     public int getAdjNum() {
         return listAdj.size();
     }
+
+    public LinkedList<Edge> getListAdj() {
+        return listAdj;
+    }
 }

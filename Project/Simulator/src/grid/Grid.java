@@ -20,10 +20,17 @@ public class Grid {
         this.tuples = costZones;
         this.obstacles = obstList;
         */
+        initCoord = new Coordinates(0, 0);
+        finCoord = new Coordinates(0, 0);
         this.gridMatrix = new Point[cols][rows];
+        for (int i = 0; i < cols; i++)
+            for (int j = 0; j < rows; j++)
+                gridMatrix[i][j] = null;
     }
 
-
+    public void updateGrid() {
+        this.gridMatrix = new Point[cols][rows];
+    }
     public Coordinates getInitCoord() {
         return initCoord;
     }
@@ -213,7 +220,9 @@ public class Grid {
         // preenche o resto dos pontos livres
         for (int x = 0; x < cols; x++) {
             for (int y = 0; y < rows; y++) {
+
                 if (gridMatrix[x][y] == null) {
+
                     aPoint = new Point(x, y);
                     addPoint(aPoint);
                 }
@@ -233,7 +242,7 @@ public class Grid {
         //TODO cost calculator
         int i, cost = 0;
 
-        for (i = 0; i < length - 1; i++) {
+        for (i = 0; i < path.size() - 1; i++) {
             cost = cost + gridMatrix[path.get(i).getX()][path.get(i).getY()].getAdjCost(gridMatrix[path.get(i + 1).getX()][path.get(i + 1).getY()]);
         }
 
