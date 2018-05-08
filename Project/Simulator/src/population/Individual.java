@@ -78,8 +78,11 @@ public class Individual {
         //90% do caminho do pai +  uma variavel dependendo go conforto
         double percentage = Math.ceil(90 + o1.getComfort() * 10);
 
-        this.length = (int) Math.ceil(percentage / 100 * o1.path.size());
+        this.length = (int) Math.ceil(percentage / 100 * o1.path.size()); //Grid pequena da sempre 100% do path
         double auxlen = length;
+        /*
+        System.out.println("daddy path size; " + o1.path.size());
+        System.out.println("child path size; " + auxlen);*/
         if (this.length == 0 || o1.path.size() < 1) {
             path = new ArrayList<Coordinates>();
             path.add(new Point(1, 1));
