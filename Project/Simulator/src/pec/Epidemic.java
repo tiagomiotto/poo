@@ -9,11 +9,11 @@ public class Epidemic extends Event {
 
     public void simulateEvent() {
         // TODO - implement Epidemic.simulateEvent
-        System.out.println("epidemic");
+        // System.out.println("epidemic");
         PriorityQueue<Individual> pqCopy = new PriorityQueue<Individual>(getMe().getSimulator().getPopulation());
         int i = 0;
         Random rand = new Random();
-
+        int counter = getMe().getSimulator().getPopulation().size();
         while (i < 4) { //Salva os 5 com maior conforto
             Individual obj = pqCopy.poll();
             i++;
@@ -21,11 +21,11 @@ public class Epidemic extends Event {
 
         while (!pqCopy.isEmpty()) { //Anda pela população verificando os sobreviventes
             Individual obj = pqCopy.poll();
-
-            if (rand.nextDouble() <= getMe().getComfort()) { //Se ele não for sobreviver
+            counter--;
+            if ((Double.compare(rand.nextDouble(), obj.getComfort())) == 1) { //Se ele não for sobreviver
                 PriorityQueue<Event> evCpy = new PriorityQueue<Event>(getRef_pec().events);
-
-                while (!pqCopy.isEmpty()) { //Remove os eventos do individuo que vai morrer
+                counter++;
+                while (!evCpy.isEmpty()) { //Remove os eventos do individuo que vai morrer
                     Event obj2 = evCpy.poll();
                     if (obj2.getMe() == obj) getRef_pec().events.remove(obj2);
                 }
@@ -33,6 +33,7 @@ public class Epidemic extends Event {
             }
 
         }
+        System.out.println("epidemic survivors: " + counter);
 
 
     }

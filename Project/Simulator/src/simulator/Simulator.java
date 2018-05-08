@@ -41,6 +41,7 @@ public class Simulator {
         sim.currentTime = sim.currentEv.getTimestamp();
 
         while (sim.currentTime < sim.variables.c_max) {
+
             if (sim.currentTime > sim.variables.c_max * i / 20) {  //Observations
                 observ++;
                 System.out.println("Observation: " + observ);

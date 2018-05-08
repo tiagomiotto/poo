@@ -11,7 +11,7 @@ public abstract class Event {
 
     public abstract void simulateEvent();
 
-    public double getTimestamp() {
+    public final double getTimestamp() {
         return timestamp;
     }
 

@@ -11,16 +11,19 @@ public class Death extends Event {
 
 	public void simulateEvent() {
 		// TODO - implement Death.simulateEvent
-		System.out.println("death");
+		//System.out.println("death");
 		PriorityQueue<Event> pqCopy = new PriorityQueue<Event>(getRef_pec().events);
 		while (!pqCopy.isEmpty()) { //Removes following events from PEC
 			Event obj = pqCopy.poll();
 			if (obj.getMe() == this.getMe()) getRef_pec().events.remove(obj);
 			// obj is the next ordered item in the queue
 		}
-		getMe().getSimulator().getPopulation().remove(getMe()); //Remove da população
+		/*
+		System.out.println("new pop zise:" +getMe().getSimulator().getPopulation().size());
+		getMe().getSimulator().getPopulation().remove(getMe()); //Remove da população*/
 
-		this.setMe(null); //Kill object?
+
+		//this.setMe(null); //Kill object?
 
 
 
@@ -35,6 +38,7 @@ public class Death extends Event {
 	public Death(Individual me, double timestamp, PEC ref_pec) {
 		super(me, timestamp, ref_pec);
 		super.setTimestamp(this.generateTimestamp());
+		//System.out.println("I will die at: " + this.getTimestamp());
 
 	}
 }
