@@ -1,7 +1,7 @@
 package pec;
 
 import grid.Edge;
-import grid.Point;
+
 import population.Individual;
 
 import java.util.LinkedList;

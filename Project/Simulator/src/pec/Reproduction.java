@@ -7,7 +7,7 @@ import java.util.Random;
 public class Reproduction extends Event {
 
     public void simulateEvent() {
-        // TODO - implement Reproduction.simulateEvent
+        
 
         Individual child = new Individual(super.getMe()); //Construtor  para reprodução
 

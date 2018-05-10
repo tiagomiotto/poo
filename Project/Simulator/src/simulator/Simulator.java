@@ -6,7 +6,7 @@ import grid.Tuple;
 import parser.Dom;
 import pec.*;
 import population.Individual;
-
+import population.IndividualComparator;
 
 import java.util.Arrays;
 import java.util.Comparator;

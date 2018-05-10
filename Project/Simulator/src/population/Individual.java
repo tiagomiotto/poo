@@ -1,5 +1,10 @@
 package population;
-
+/**  
+* Individual.java - A class defining the attributes of each individual and
+* how it evolves throughout the simulation, according to the project parameters
+* @author  Tiago Miotto
+* @version 1.0 
+*/
 import grid.Coordinates;
 import grid.Point;
 import simulator.Simulator;
@@ -7,10 +12,10 @@ import simulator.Simulator;
 
 import java.util.ArrayList;
 
-public class Individual {
+public class Individual implements IIndividual {
 
     private double comfort;
-    private int cost; //A função nao calcula certo porque o path ta sempre nulo
+    private int cost; 
     private int length;
     private Point current;
     private ArrayList<Coordinates> path;
@@ -18,8 +23,12 @@ public class Individual {
     private Simulator simulator;
     private boolean ended = false;
 
-    public void evolve(Point new_P) { //For move
-        // TODO - implement Evolution
+    /**  
+     * Define how the individual evolves throughout the simulation, in this case, through moves  
+     * @param newP, the point the individual is suposed to move to 
+     */  
+    public void evolve(Point new_P) { 
+        
         current.setX(new_P.getX());
         current.setY(new_P.getY());
 
@@ -27,17 +36,13 @@ public class Individual {
             ended = true;
             simulator.getWinners().add(this);
         }
-        if (path.contains(new_P)) { //Ta mal aqui, ta sempre apagando o path
-            //System.out.println("a");
-            //System.out.println(path.toString());
-            //System.out.println(current.toString());
+        if (path.contains(new_P)) { 
+
             int l_aux = path.indexOf(new_P);
-            //System.out.println(l_aux);
             ArrayList<Coordinates> auxiliar = new ArrayList<>(path);
             path = new ArrayList<Coordinates>();
             for (int i = 0; i < l_aux + 1; i++) path.add(auxiliar.get(i));
         } else {
-            //System.out.println("b");
             this.length += 1;
             path.add(new_P);
 
@@ -55,7 +60,13 @@ public class Individual {
         this.possibilities = simulator.getGrid().getPoint(current).getAdjNum();
 
     }
-
+    
+    
+    /**  
+     * A simple constructor for a new individual
+     * @param simulator, a reference for the simulator object doing the simulation
+     * @return A new Individual.
+     */ 
     public Individual(Simulator simulator) {
         this.cost = 0;
         this.length = 0;
@@ -71,18 +82,20 @@ public class Individual {
 
 
     }
-
+    /**  
+     * A simple constructor for a new individual, how is born in a reproduction event, inheriting characteristics from its father
+     * @param Individual o1, the parent individual
+     */ 
     public Individual(Individual o1) { //Construtor para reprodução
-        //TODO construct from a parent individual
+
 
         //90% do caminho do pai +  uma variavel dependendo go conforto
         double percentage = Math.ceil(90 + o1.getComfort() * 10);
 
         this.length = (int) Math.ceil(percentage / 100 * o1.path.size()); //Grid pequena da sempre 100% do path
         double auxlen = length;
-        /*
-        System.out.println("daddy path size; " + o1.path.size());
-        System.out.println("child path size; " + auxlen);*/
+        
+
         if (this.length == 0 || o1.path.size() < 1) {
             path = new ArrayList<Coordinates>();
             path.add(new Point(1, 1));
@@ -103,7 +116,7 @@ public class Individual {
         this.simulator = o1.simulator;
         this.cost = simulator.getGrid().cost(this.path, this.length);
         this.possibilities = simulator.getGrid().getPoint(current).getAdjNum()
-        ; //da erro aqui
+        ; 
 
         ended = o1.ended;
         double dist = simulator.getGrid().dist(new Coordinates(current.getX(), current.getY()));
@@ -112,8 +125,12 @@ public class Individual {
                 .getGrid().getCols() + 1))), simulator.getVariables().getK());
     }
 
-    // adicionar uma descrição textual do caminho do individuo
-
+    
+    /**  
+     * A method similar to a toString method for the path taken by the individual
+     *
+     * @return A String data type.
+     */ 
     public String getPathDesc() {
 
         String aux = "";

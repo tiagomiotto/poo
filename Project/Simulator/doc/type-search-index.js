@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"pec","l":"EventComparator"}]

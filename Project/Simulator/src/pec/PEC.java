@@ -1,6 +1,6 @@
 package pec;
 
-import java.util.Comparator;
+
 import java.util.PriorityQueue;
 
 public class PEC implements PECS {
