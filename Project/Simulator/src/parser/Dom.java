@@ -77,7 +77,7 @@ public class Dom {
 
                 int num1 = Integer.parseInt(nume);
                 n_tup = num1;
-                for (int m = 0; m < num1 - 1; m++) {
+                for (int m = 0; m < num1 - 1 ; m++) {
                     Node spec = zone.item(m);
                     if (spec.getNodeType() == Node.ELEMENT_NODE) {
                         Element speci = (Element) spec;
@@ -102,7 +102,7 @@ public class Dom {
                 int num2 = Integer.parseInt(numer);
                 n_obst = num2;
                 NodeList obst = doc.getElementsByTagName("obstacle");
-                for (int u = 0; u < num2 - 1; u++) {
+                for (int u = 0; u < num2 - 1 ; u++) {
                     Node ob = obst.item(u);
                     if (ob.getNodeType() == Node.ELEMENT_NODE) {
                         Element obstacle = (Element) ob;

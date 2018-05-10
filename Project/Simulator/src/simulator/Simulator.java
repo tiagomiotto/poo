@@ -4,6 +4,7 @@ import grid.Coordinates;
 import grid.Grid;
 import grid.Tuple;
 import parser.Dom;
+import parser.Parser;
 import pec.*;
 import population.Individual;
 
@@ -26,18 +27,22 @@ public class Simulator {
     private int events;
 
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         // TODO - implement Simulator.main
         Simulator sim = new Simulator();
         sim.currentTime = 0.0;
         int observ = 0;
         sim.events = 0;
         int i = 1;
-        sim.createGrid();
+        Parser myParser = new Parser();
+        myParser.parseFile("/Users/joaotrindade/IdeaProjects/poonoob/data1.xml");
+        sim.createGrid(myParser);
         sim.pec = new PEC();
-        sim.begin();
+        sim.begin(myParser);
 
+        System.out.println("Hey");
         sim.currentEv = sim.pec.getEvents().peek();
+        System.out.println("Ho");
         sim.currentTime = sim.currentEv.getTimestamp();
 
         while (sim.currentTime < sim.variables.c_max) {
@@ -86,7 +91,14 @@ public class Simulator {
     }
 
 
-    private void begin() {
+    private void begin(Parser myParser) {
+        variables.setMiu(myParser.getNu());
+        variables.setP(myParser.getRo());
+        variables.setDelta(myParser.getDelta());
+        variables.setV_max(myParser.getMaxPop());
+        variables.setK(myParser.getK());
+        variables.setC_max(myParser.getSimulationTime());
+        variables.setV_init(myParser.getInitPop());
         for (int i = 0; i < variables.v_init; i++) {
             Individual firstborn = new Individual(this);
             pec.addEventPEC(new Reproduction(firstborn, 0, pec));
@@ -116,17 +128,23 @@ public class Simulator {
         return pec;
     }
 
-    private void createGrid() {
+    private void createGrid(Parser myParser) {
         Dom parse = new Dom();
-        Tuple[] tuples = new Tuple[100];
-        Coordinates[] obst = new Coordinates[100];
-        grid = new Grid(0, 0);
-        int n_obst = 0, n_tup = 0;
-        parse.parser(variables, grid, tuples, obst, n_obst, n_tup);
+        Tuple[] tuples = myParser.getTuples();
+        Coordinates[] obst = myParser.getObstacles();
+        int n_obst = myParser.getObstacles().length;
+        int n_tup = myParser.getTuples().length;
+        grid = new Grid(myParser.getColumns(), myParser.getRows());
+        grid.setInitCoord(myParser.getInitialPoint());
+        grid.setFinCoord(myParser.getFinalPoint());
+        // parse.parser(variables, grid, tuples, obst, n_obst, n_tup);
+        //System.out.println(obst[3].getX());
         grid.updateGrid();
-        tuples = Arrays.copyOf(tuples, n_tup);
-        obst = Arrays.copyOf(obst, n_obst);
-        grid.fillGridTuples(tuples);
+        //tuples = Arrays.copyOf(tuples, n_tup);
+        System.out.println("Number of tuples: " +n_tup);
+        //obst = Arrays.copyOf(obst, n_obst);
+        System.out.println("Number of obstacles: " +n_obst);
         grid.buildGrid(obst);
+        grid.fillGridTuples(tuples);
     }
 }

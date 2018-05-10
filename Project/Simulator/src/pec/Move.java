@@ -25,6 +25,7 @@ public class Move extends Event {
         }
 
         // System.out.println("i = " +i + " possible=  "+ possible + " random = " + random + " p/i = " + aux);
+        // System.out.println("evolve: " +poss.get(i).getAdjacent().getX() +" " +poss.get(i).getAdjacent().getY());
         super.getMe().evolve(poss.get(i).getAdjacent());
 
         super.getRef_pec().addEventPEC(new Move(super.getMe(), this.getTimestamp(), super.getRef_pec())); //
