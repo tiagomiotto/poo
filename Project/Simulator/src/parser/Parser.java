@@ -14,12 +14,12 @@ import grid.Tuple;
 
 public class Parser extends DefaultHandler {
 
-    private Coordinates finalPosition, initialPosition;
-    private int simulationTime, initpop, maxpop, k, nu, ro, delta, colsnb, rowsnb;
+    private Coordinates finCoord, initCoord;
+    private int c_max, v_init, v_max, k, miu, p, delta, columns, rows;
     private Tuple[] tuples;
     private Coordinates[] obstacles;
-    private int xinicialZone, yinicialZone, xfinalZone, yfinalZone, obsnum, zonenum;
-    private boolean zoneFlag = false;
+    private int xi_tuple, yi_tuple, xf_tuple, yf_tuple, n_obst, n_tups;
+    private boolean tupleFlag = false;
 
     public void parseFile(String filename)
     {
@@ -50,15 +50,15 @@ public class Parser extends DefaultHandler {
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         if(qName.equalsIgnoreCase("simulation"))
         {
-            simulationTime = Integer.parseInt(attributes.getValue("finalinst"));
-            initpop = Integer.parseInt(attributes.getValue("initpop"));
-            maxpop = Integer.parseInt(attributes.getValue("maxpop"));
+            c_max = Integer.parseInt(attributes.getValue("finalinst"));
+            v_init = Integer.parseInt(attributes.getValue("initpop"));
+            v_max = Integer.parseInt(attributes.getValue("maxpop"));
             k = Integer.parseInt(attributes.getValue("comfortsens"));
         }
         else if(qName.equalsIgnoreCase("grid"))
         {
-            colsnb = Integer.parseInt(attributes.getValue("colsnb"));
-            rowsnb = Integer.parseInt(attributes.getValue("rowsnb"));
+            columns = Integer.parseInt(attributes.getValue("colsnb"));
+            rows = Integer.parseInt(attributes.getValue("rowsnb"));
         }
         else if(qName.equalsIgnoreCase("initialpoint"))
         {
@@ -66,7 +66,7 @@ public class Parser extends DefaultHandler {
             int yinicial = Integer.parseInt(attributes.getValue("yinitial"));
 
             //Make the point where the simulation starts
-            initialPosition = new Coordinates(xinicial, yinicial);
+            initCoord = new Coordinates(xinicial, yinicial);
         }
         else if(qName.equalsIgnoreCase("finalpoint"))
         {
@@ -74,7 +74,7 @@ public class Parser extends DefaultHandler {
             int yfinal = Integer.parseInt(attributes.getValue("yfinal"));
 
             //Make the point where the simulation ends
-            finalPosition = new Coordinates(xfinal, yfinal);
+            finCoord = new Coordinates(xfinal, yfinal);
         }
         else if(qName.equalsIgnoreCase("specialcostzones"))
         {
@@ -85,11 +85,11 @@ public class Parser extends DefaultHandler {
         }
         else if(qName.equalsIgnoreCase("zone"))
         {
-            xinicialZone = Integer.parseInt(attributes.getValue("xinitial"));
-            yinicialZone = Integer.parseInt(attributes.getValue("yinitial"));
-            xfinalZone = Integer.parseInt(attributes.getValue("xfinal"));
-            yfinalZone = Integer.parseInt(attributes.getValue("yfinal"));
-            zoneFlag = true;
+            xi_tuple = Integer.parseInt(attributes.getValue("xinitial"));
+            yi_tuple = Integer.parseInt(attributes.getValue("yinitial"));
+            xf_tuple = Integer.parseInt(attributes.getValue("xfinal"));
+            yf_tuple = Integer.parseInt(attributes.getValue("yfinal"));
+            tupleFlag = true;
         }
         else if(qName.equalsIgnoreCase("obstacles"))
         {
@@ -105,18 +105,18 @@ public class Parser extends DefaultHandler {
 
             //Create obstacle and add it to the array
             Coordinates newObstacle = new Coordinates(x, y);
-            obstacles[obsnum] = newObstacle;
+            obstacles[n_obst] = newObstacle;
 
             //Increment obstacles number
-            obsnum++;
+            n_obst++;
         }
         else if(qName.equalsIgnoreCase("death"))
         {
-            nu = Integer.parseInt(attributes.getValue("param"));
+            miu = Integer.parseInt(attributes.getValue("param"));
         }
         else if(qName.equalsIgnoreCase("reproduction"))
         {
-            ro = Integer.parseInt(attributes.getValue("param"));
+            p = Integer.parseInt(attributes.getValue("param"));
         }
         else if(qName.equalsIgnoreCase("move"))
         {
@@ -127,11 +127,11 @@ public class Parser extends DefaultHandler {
     @Override
     public void characters(char ch[], int start, int length) throws SAXException {
 
-        if(zoneFlag)
+        if(tupleFlag)
         {
             //Get points to build the zone, coordinates were given by the the attributes of the element
-            Coordinates initial_position = new Coordinates(xinicialZone, yinicialZone);
-            Coordinates final_position = new Coordinates(xfinalZone, yfinalZone);
+            Coordinates initial_position = new Coordinates(xi_tuple, yi_tuple);
+            Coordinates final_position = new Coordinates(xf_tuple, yf_tuple);
 
             //Get the cost from the element content
             String costString = new String(ch, start, length);
@@ -139,28 +139,27 @@ public class Parser extends DefaultHandler {
 
             //Create the zone and add it to the list
             Tuple newZone = new Tuple(initial_position, final_position, cost);
-            tuples[zonenum] = newZone;
+            tuples[n_tups] = newZone;
 
             //Increment zone number
-            zonenum++;
+            n_tups++;
 
-            zoneFlag = false;
+            tupleFlag = false;
         }
     }
 
     //Getters
-    public Coordinates getFinalPoint() {return finalPosition;}
-    public Coordinates getInitialPoint() {return initialPosition;}
-    public int getRows() {return rowsnb;}
-    public int getColumns() {return colsnb;}
+    public Coordinates getFinCoord() {return finCoord;}
+    public Coordinates getInitCoord() {return initCoord;}
+    public int getRows() {return rows;}
+    public int getColumns() {return columns;}
     public Tuple[] getTuples() {return tuples;}
     public Coordinates[] getObstacles() {return obstacles;}
-    public int getSimulationTime() {return simulationTime;}
-    public int getInitPop() {return initpop;}
-    public int getMaxPop() {return maxpop;}
+    public int getC_max() {return c_max;}
+    public int getV_init() {return v_init;}
+    public int getV_max() {return v_max;}
     public int getK() {return k;}
-    public int getNu() {return nu;}
-    public int getRo() {return ro;}
+    public int getMiu() {return miu;}
+    public int getP() {return p;}
     public int getDelta() {return delta;}
 }
-
