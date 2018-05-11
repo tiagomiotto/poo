@@ -35,7 +35,7 @@ public class Individual implements IIndividual {
         current.setX(new_P.getX());
         current.setY(new_P.getY());
 
-        if (simulator.getGrid().getFinCoord().equals(new_P)) {
+        if (simulator.getGrid().getFinCoord().getX() == new_P.getX() + 1 && simulator.getGrid().getFinCoord().getY() == new_P.getY() + 1) {
             ended = true;
             simulator.getWinners().add(this);
         }

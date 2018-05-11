@@ -29,7 +29,7 @@ public class Death extends Event {
 			// obj is the next ordered item in the queue
 		}
 
-		System.out.println("new pop zise:" +getMe().getSimulator().getPopulation().size());
+		//System.out.println("new pop zise:" +getMe().getSimulator().getPopulation().size());
 		getMe().getSimulator().getPopulation().remove(getMe()); //Remove da população
 
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE simulation SYSTEM "simulation.dtd"> 
 <simulation finalinst="1000" initpop="98" maxpop="5500" comfortsens="20">
-    <grid colsnb="500" rowsnb="500"/>
+    <grid colsnb="5" rowsnb="5"/>
     <initialpoint xinitial="10" yinitial="10"/>
     <finalpoint xfinal="499" yfinal="499"/>
     <specialcostzones num="10">

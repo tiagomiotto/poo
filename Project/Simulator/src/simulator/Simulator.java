@@ -68,9 +68,7 @@ public class Simulator {
 
                 System.out.println("Path of the best fit individual: " + sim.population.peek().getPathDesc());
                 System.out.println("Cost/Comfort " + sim.population.peek().getCost() + "/" + sim.population.peek().getComfort());
-                System.out.println("Final coordinates " + sim.grid.getFinCoord().getX() + "," + sim.getGrid()
-                        .getFinCoord().getY());
-                System.out.println("Size of pop: " + sim.population.size());
+
 
                 System.out.println();
 
@@ -86,7 +84,8 @@ public class Simulator {
             sim.events++;
         }
         //Final tally
-        if (sim.winners.size() > 0) System.out.println("Path of the best fit winner: " + sim.winners.peek().getPathDesc
+        if (sim.winners.size() > 0)
+            System.out.println("Path of the best fit individual: " + sim.winners.peek().getPathDesc
                 ());
         else if (sim.population.peek() == null) {
             System.out.println("Everyone died");
@@ -163,8 +162,8 @@ public class Simulator {
         int n_obst = myParser.getObstacles().length;
         int n_tup = myParser.getTuples().length;
         grid = new Grid(myParser.getColumns(), myParser.getRows());
-        grid.setInitCoord(myParser.getInitialPoint());
-        grid.setFinCoord(myParser.getFinalPoint());
+        grid.setInitCoord(myParser.getInitCoord());
+        grid.setFinCoord(myParser.getFinCoord());
         grid.updateGrid();
         grid.buildGrid(obst);
         grid.fillGridTuples(tuples);

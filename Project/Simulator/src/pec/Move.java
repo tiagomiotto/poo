@@ -31,8 +31,12 @@ public class Move extends Event {
         double random = rand.nextDouble();
         LinkedList<Edge> poss = new LinkedList<Edge>(super.getMe().getSimulator().getGrid().getPoint(super.getMe()
                 .getCurrent()).getListAdj()); //Pega os moves possiveis
+        double aux = 1.0 / possible;
+
         for (i = 0; i < possible - 1; i++) {
-            if (random <= (i / possible)) break;
+            double aux2 = aux * (i + 1);
+            //System.out.println("Aux2 = " + aux2 + " rand" + random);
+            if ((Double.compare(random, aux2) < 0)) break;
         }
 
         // System.out.println("i = " +i + " possible=  "+ possible + " random = " + random + " p/i = " + aux);
