@@ -5,11 +5,26 @@ import population.Individual;
 import java.util.PriorityQueue;
 import java.util.Random;
 
+/**
+ * Move.java - A class extending the event class in order to determine the reproduction behaviour of each individual.
+ * It doesn't need to have a timestamp generator since it's always the next event to be simulated when
+ * it's added to the PEC.
+ * It contains the individual it is related to, the time in which it should be simulated, and a reference to
+ * the PEC simulating it.
+ *
+ * @author Tiago Miotto
+ * @version 1.0
+ * @see Event
+ */
 public class Epidemic extends Event {
 
+    /**
+     * Method defining the individuals epidemic behaviour. Which saves the 5 individuals
+     * with the biggest comfort, and then observe a random value to determine if each of the
+     * other ones survive, if the value is bigger than the individual's comfort, it dies.
+     */
     public void simulateEvent() {
-        // TODO - implement Epidemic.simulateEvent
-        // System.out.println("epidemic");
+
         PriorityQueue<Individual> pqCopy = new PriorityQueue<Individual>(getMe().getSimulator().getPopulation());
         int i = 0;
         Random rand = new Random();
@@ -33,11 +48,13 @@ public class Epidemic extends Event {
             }
 
         }
-        System.out.println("epidemic survivors: " + counter);
 
 
     }
 
+    /**
+     * Constructor
+     */
     Epidemic(Individual me, PEC ref_pec) {
         super(me, 0, ref_pec);
     }

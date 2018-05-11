@@ -1,15 +1,27 @@
 package pec;
 
 import grid.Edge;
-import grid.Point;
+
 import population.Individual;
 
 import java.util.LinkedList;
 import java.util.Random;
 
+/**
+ * Move.java - A class extending the event class in order to determine the move behaviour of each individual.
+ * It contains the individual it is related to, the time in which it should be simulated, and a reference to the
+ * PEC simulating it.
+ *
+ * @author Tiago Miotto
+ * @version 1.0
+ * @see Event
+ */
 
 public class Move extends Event {
 
+    /**
+     * Method defining the individuals move(evolve) behaviour.
+     */
     public void simulateEvent() {
         // TODO - implement Move.simulateEvent
         Random rand = new Random();
@@ -25,7 +37,6 @@ public class Move extends Event {
         }
 
         // System.out.println("i = " +i + " possible=  "+ possible + " random = " + random + " p/i = " + aux);
-        // System.out.println("evolve: " +poss.get(i).getAdjacent().getX() +" " +poss.get(i).getAdjacent().getY());
         super.getMe().evolve(poss.get(i).getAdjacent());
 
         super.getRef_pec().addEventPEC(new Move(super.getMe(), this.getTimestamp(), super.getRef_pec())); //
@@ -34,6 +45,10 @@ public class Move extends Event {
 
     }
 
+    /**
+     * Method for generating the correct timestamp corresponding to a exponential aleatory variable with mean value
+     * (1-log(fi)*delta
+     */
 
     private final double generateTimestamp(double time) {
         Random rand = new Random();
@@ -41,9 +56,12 @@ public class Move extends Event {
         return time + (-lambda * Math.log(Math.random()));
     }
 
+    /**
+     * Constructor
+     */
     public Move(Individual me, double timestamp, PEC ref_pec) {
         super(me, timestamp, ref_pec);
         super.setTimestamp(this.generateTimestamp(super.getTimestamp()));
-        //System.out.println("I will move at: " + this.getTimestamp());
+
     }
 }

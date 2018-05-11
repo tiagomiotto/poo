@@ -1,40 +1,49 @@
 package pec;
 
-import java.util.Comparator;
+
 import java.util.PriorityQueue;
 
-public class PEC implements PECS {
+/**
+ * PEC.java - A class implementing a Private Event Container, used for simulation based events.
+ * It implements the Ipec interface.
+ *
+ * @author Tiago Miotto
+ * @version 1.0
+ */
+public class PEC implements Ipec {
 
 
     PriorityQueue<Event> events = new PriorityQueue<>(10, new EventComparator());
     //Simulator simulator;
 
     /**
-     * @param o1
+     * Method to add events to the PEC
+     * @param o1, the event to be added
      */
     public void addEventPEC(Event o1) {
-        // TODO - implement PEC.addEventPEC
+
         events.add(o1);
-        //System.out.println("prior quque: " + events);
-        /*
-        System.out.println("Event added at: " + o1.getTimestamp());
-        System.out.println(("next event time:" + events.peek().getTimestamp()));
-        System.out.println();*/
+
     }
 
+    /**
+     * Method get the next event to be simulated and removes it from the PEC
+     */
     public Event nextEventPEC() {
-        // TODO - implement PEC.nextEventPEC
+
         Event aux;
         aux = events.poll();
 
         if (aux != null) {
-            //System.out.println("next event: "+ aux+ " from: "+ aux.getMe()+" at " +aux.getTimestamp() );
             aux.simulateEvent();
 
         }
         return aux;
     }
 
+    /**
+     * Retrieve a reference to the events PQ
+     */
     public PriorityQueue<Event> getEvents() {
         return events;
     }

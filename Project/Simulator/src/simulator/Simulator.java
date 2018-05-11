@@ -7,13 +7,18 @@ import parser.Dom;
 import parser.Parser;
 import pec.*;
 import population.Individual;
+import population.IndividualComparator;
 
 
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-
+/**
+ * Simulator.java - A simple class to implement the main necessary for the Simulator
+ *
+ * @author Tiago Miotto
+ * @version 1.0
+ */
 public class Simulator {
 
     private PEC pec;
@@ -90,7 +95,11 @@ public class Simulator {
 
     }
 
-
+    /**
+     * A method to read and save the provided variables for the simulation
+     *
+     * @param myParser, a reference to the XML parser object
+     */
     private void begin(Parser myParser) {
         variables.setMiu(myParser.getNu());
         variables.setP(myParser.getRo());
@@ -108,26 +117,46 @@ public class Simulator {
         }
     } //Create initial population
 
+    /**
+     * Retrieve a reference to the Individuals which finished
+     */
     public PriorityQueue<Individual> getWinners() {
         return winners;
     }
 
+    /**
+     * Retrieve the simulation variables
+     */
     public EventVariables getVariables() {
         return variables;
     }
 
+    /**
+     * Retrieve the Grid
+     */
     public Grid getGrid() {
         return grid;
     }
 
+    /**
+     * Retrieve a reference to the Population
+     */
     public PriorityQueue<Individual> getPopulation() {
         return population;
     }
 
+    /**
+     * Retrieve a reference to the PEC
+     */
     public PEC getPec() {
         return pec;
     }
 
+    /**
+     * A method to create and fill the grid with the values obtained from the XML
+     *
+     * @param myParser, a reference to the XML parser object
+     */
     private void createGrid(Parser myParser) {
         Dom parse = new Dom();
         Tuple[] tuples = myParser.getTuples();
