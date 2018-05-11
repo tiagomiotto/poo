@@ -69,7 +69,6 @@ public class Individual implements IIndividual {
      * A simple constructor for a new individual
      *
      * @param simulator, a reference for the simulator object doing the simulation
-     * @return A new Individual.
      */
     public Individual(Simulator simulator) {
         this.cost = 0;

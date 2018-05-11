@@ -13,7 +13,8 @@ public class IndividualComparator implements Comparator<Individual> {
 
 
     /**
-     * Implementation of the Comparator method, returning 0,1 or -1, depending if the comfort of o1=o2,o1>o2,o1<o2
+     * Implementation of the Comparator method, returning 0,1 or -1, depending if the comfort of o1 equals o2,o1 bigger than
+     * o2,o1 less than o2
      *
      * @param o1,o2, to be compared
      * @return Integer

@@ -33,7 +33,7 @@ public class Simulator {
 
 
     public static void main(String[] args) {
-        // TODO - implement Simulator.main
+
         Simulator sim = new Simulator();
         sim.currentTime = 0.0;
         int observ = 0;
