@@ -64,23 +64,20 @@ public class Parser extends DefaultHandler {
         {
             int xinicial = Integer.parseInt(attributes.getValue("xinitial"));
             int yinicial = Integer.parseInt(attributes.getValue("yinitial"));
-
-            //Make the point where the simulation starts
+            // initial point of the simulation
             initCoord = new Coordinates(xinicial, yinicial);
         }
         else if(qName.equalsIgnoreCase("finalpoint"))
         {
             int xfinal = Integer.parseInt(attributes.getValue("xfinal"));
             int yfinal = Integer.parseInt(attributes.getValue("yfinal"));
-
-            //Make the point where the simulation ends
+            // final point of the simulation
             finCoord = new Coordinates(xfinal, yfinal);
         }
         else if(qName.equalsIgnoreCase("specialcostzones"))
         {
             int num = Integer.parseInt(attributes.getValue("num"));
-
-            //Create zones array
+            // array of high cost zones (tuples
             tuples = new Tuple[num];
         }
         else if(qName.equalsIgnoreCase("zone"))
@@ -94,8 +91,7 @@ public class Parser extends DefaultHandler {
         else if(qName.equalsIgnoreCase("obstacles"))
         {
             int num = Integer.parseInt(attributes.getValue("num"));
-
-            //Create obstacles array
+            // array of obstacles
             obstacles = new Coordinates[num];
         }
         else if(qName.equalsIgnoreCase("obstacle"))
@@ -103,11 +99,9 @@ public class Parser extends DefaultHandler {
             int x = Integer.parseInt(attributes.getValue("xpos"));
             int y = Integer.parseInt(attributes.getValue("ypos"));
 
-            //Create obstacle and add it to the array
+            // creates obstacle and adds it to the array, incrementing the total number of obstacles
             Coordinates newObstacle = new Coordinates(x, y);
             obstacles[n_obst] = newObstacle;
-
-            //Increment obstacles number
             n_obst++;
         }
         else if(qName.equalsIgnoreCase("death"))
@@ -129,19 +123,16 @@ public class Parser extends DefaultHandler {
 
         if(tupleFlag)
         {
-            //Get points to build the zone, coordinates were given by the the attributes of the element
+            // points of interest of the tuple
             Coordinates initial_position = new Coordinates(xi_tuple, yi_tuple);
             Coordinates final_position = new Coordinates(xf_tuple, yf_tuple);
-
-            //Get the cost from the element content
+            // tuple cost
             String costString = new String(ch, start, length);
             int cost = Integer.parseInt(costString);
-
-            //Create the zone and add it to the list
+            // update of the array of tuples
             Tuple newZone = new Tuple(initial_position, final_position, cost);
             tuples[n_tups] = newZone;
-
-            //Increment zone number
+            // increments number of tuples
             n_tups++;
 
             tupleFlag = false;
