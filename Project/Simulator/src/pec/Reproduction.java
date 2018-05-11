@@ -4,10 +4,23 @@ import population.Individual;
 
 import java.util.Random;
 
+/**
+ * Reproduction.java - A class extending the event class in order to determine the reproduction behaviour of each
+ * individual.
+ * It contains the individual it is related to, the time in which it should be simulated, and a reference to the
+ * PEC simulating it.
+ *
+ * @author Tiago Miotto
+ * @version 1.0
+ * @see Event
+ */
 public class Reproduction extends Event {
 
+    /**
+     * Method defining the individuals reproduction behaviour.
+     */
     public void simulateEvent() {
-        // TODO - implement Reproduction.simulateEvent
+
 
         Individual child = new Individual(super.getMe()); //Construtor  para reprodução
 
@@ -30,13 +43,19 @@ public class Reproduction extends Event {
 
     }
 
-
+    /**
+     * Method for generating the correct timestamp corresponding to a exponential aleatory variable with mean value
+     * (1-log(fi)*P
+     */
     private double generateTimestamp(double time) {
         Random rand = new Random();
         double lambda = (1 - Math.log(getMe().getComfort())) * getMe().getSimulator().getVariables().getP();
         return time + (-lambda * Math.log(Math.random()));
     }
 
+    /**
+     * Constructor
+     */
     public Reproduction(Individual me, double timestamp, PEC ref_pec) {
         super(me, timestamp, ref_pec);
         super.setTimestamp(this.generateTimestamp(this.getTimestamp()));
