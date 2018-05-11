@@ -40,14 +40,19 @@ public class Simulator {
         sim.events = 0;
         int i = 1;
         Parser myParser = new Parser();
-        myParser.parseFile("/Users/joaotrindade/IdeaProjects/poonoob/data1.xml");
+        if(args.length != 1)
+        {
+            System.out.println("Invalid input.");
+            System.exit(1);
+        }
+        String inputFile = args[0];
+        myParser.parseFile(inputFile);
+
         sim.createGrid(myParser);
         sim.pec = new PEC();
         sim.begin(myParser);
 
-        System.out.println("Hey");
         sim.currentEv = sim.pec.getEvents().peek();
-        System.out.println("Ho");
         sim.currentTime = sim.currentEv.getTimestamp();
 
         while (sim.currentTime < sim.variables.c_max) {
