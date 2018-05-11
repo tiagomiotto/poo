@@ -2,11 +2,26 @@ package grid;
 
 import java.util.Objects;
 
+/**
+ * Used to represent the coordinates of a point from the specified map
+ *
+ * @author Group 18
+ */
 public class Coordinates {
+    /**
+     * x corresponds to the x coordinate
+     * y corresponds to the y coordinate
+     */
     int x;
     int y;
 
-    // constructor
+    /**
+     * Constructor for class Coordinates
+     * @param xCoord
+     *              specified x coordinate
+     * @param yCoord
+     *              specified y coordinate
+     */
     public Coordinates(int xCoord, int yCoord) {
         this.x = xCoord;
         this.y = yCoord;
@@ -43,6 +58,7 @@ public class Coordinates {
         return Objects.hash(x, y);
     }
 
+    // setters
     public void setX(int x) {
         this.x = x;
     }
