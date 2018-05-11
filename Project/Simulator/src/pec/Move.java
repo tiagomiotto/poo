@@ -26,14 +26,13 @@ public class Move extends Event {
         // TODO - implement Move.simulateEvent
         Random rand = new Random();
         // System.out.println("move");
-        double possible = super.getMe().getPossibilities();
+        int possible = super.getMe().getPossibilities();
         int i;
-        double aux = 0;
         double random = rand.nextDouble();
         LinkedList<Edge> poss = new LinkedList<Edge>(super.getMe().getSimulator().getGrid().getPoint(super.getMe()
                 .getCurrent()).getListAdj()); //Pega os moves possiveis
         for (i = 0; i < possible - 1; i++) {
-            if (random <= (aux = (i / possible))) break;
+            if (random <= (i / possible)) break;
         }
 
         // System.out.println("i = " +i + " possible=  "+ possible + " random = " + random + " p/i = " + aux);
