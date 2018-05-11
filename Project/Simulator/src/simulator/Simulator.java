@@ -101,13 +101,7 @@ public class Simulator {
      * @param myParser, a reference to the XML parser object
      */
     private void begin(Parser myParser) {
-        variables.setMiu(myParser.getNu());
-        variables.setP(myParser.getRo());
-        variables.setDelta(myParser.getDelta());
-        variables.setV_max(myParser.getMaxPop());
-        variables.setK(myParser.getK());
-        variables.setC_max(myParser.getSimulationTime());
-        variables.setV_init(myParser.getInitPop());
+        variables = new EventVariables(myParser.getMiu(),myParser.getP(),myParser.getDelta(),myParser.getV_max(),myParser.getK(),myParser.getC_max(),myParser.getV_init());
         for (int i = 0; i < variables.v_init; i++) {
             Individual firstborn = new Individual(this);
             pec.addEventPEC(new Reproduction(firstborn, 0, pec));
@@ -166,13 +160,7 @@ public class Simulator {
         grid = new Grid(myParser.getColumns(), myParser.getRows());
         grid.setInitCoord(myParser.getInitialPoint());
         grid.setFinCoord(myParser.getFinalPoint());
-        // parse.parser(variables, grid, tuples, obst, n_obst, n_tup);
-        //System.out.println(obst[3].getX());
         grid.updateGrid();
-        //tuples = Arrays.copyOf(tuples, n_tup);
-        System.out.println("Number of tuples: " +n_tup);
-        //obst = Arrays.copyOf(obst, n_obst);
-        System.out.println("Number of obstacles: " +n_obst);
         grid.buildGrid(obst);
         grid.fillGridTuples(tuples);
     }
