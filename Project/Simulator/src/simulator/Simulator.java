@@ -40,8 +40,7 @@ public class Simulator {
         sim.events = 0;
         int i = 1;
         Parser myParser = new Parser();
-        if(args.length != 1)
-        {
+        if (args.length != 1) {
             System.out.println("Invalid input.");
             System.exit(1);
         }
@@ -57,36 +56,25 @@ public class Simulator {
 
         while (sim.currentTime < sim.variables.c_max) {
 
-            if (sim.currentTime > sim.variables.c_max * i / 20) {  //Observations
+            if (sim.currentTime >= sim.variables.c_max * i / 20) {  //Observations
                 observ++;
-                System.out.println("Observation: " + observ);
-                System.out.println("Present instant: " + sim.currentTime);
-                System.out.println("Number of realized events: " + sim.events);
-
-                if (sim.winners.size() > 0) System.out.println("Final point has been hit? Yes");
-                else System.out.println("Final point has been hit? No");
-
-                System.out.println("Path of the best fit individual: " + sim.population.peek().getPathDesc());
-                System.out.println("Cost/Comfort " + sim.population.peek().getCost() + "/" + sim.population.peek().getComfort());
-
-
-                System.out.println();
-
+                sim.pec.addEventPEC(new Observation(new Individual(sim), sim.currentTime, sim.pec, observ, sim.events));
                 i++;
             }
-            sim.currentEv = sim.pec.nextEventPEC();
-            if (sim.currentEv == null) {
-                System.out.println("PEC ran out of events at time: " + sim.currentTime);
-
+            try {
+                sim.currentEv = sim.pec.nextEventPEC();
+                sim.currentTime = sim.currentEv.getTimestamp();
+            } catch (OutOfEventsException e) {
+                System.out.println(e.toString());
                 break;
             }
-            sim.currentTime = sim.currentEv.getTimestamp();
+
             sim.events++;
         }
         //Final tally
         if (sim.winners.size() > 0)
             System.out.println("Path of the best fit individual: " + sim.winners.peek().getPathDesc
-                ());
+                    ());
         else if (sim.population.peek() == null) {
             System.out.println("Everyone died");
         } else {
@@ -105,7 +93,8 @@ public class Simulator {
      * @param myParser, a reference to the XML parser object
      */
     private void begin(Parser myParser) {
-        variables = new EventVariables(myParser.getMiu(),myParser.getP(),myParser.getDelta(),myParser.getV_max(),myParser.getK(),myParser.getC_max(),myParser.getV_init());
+        variables = new EventVariables(myParser.getMiu(), myParser.getP(), myParser.getDelta(), myParser.getV_max(), myParser.getK(), myParser.getC_max(), myParser.getV_init());
+
         for (int i = 0; i < variables.v_init; i++) {
             Individual firstborn = new Individual(this);
             pec.addEventPEC(new Reproduction(firstborn, 0, pec));
@@ -113,6 +102,7 @@ public class Simulator {
             pec.addEventPEC(new Death(firstborn, 0, pec));
             population.add(firstborn);
         }
+
     } //Create initial population
 
     /**

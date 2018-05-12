@@ -1,4 +1,5 @@
 package population;
+
 import grid.Coordinates;
 import grid.Point;
 import simulator.Simulator;
@@ -73,9 +74,9 @@ public class Individual implements IIndividual {
     public Individual(Simulator simulator) {
         this.cost = 0;
         this.length = 0;
-        this.current = new Point(simulator.getGrid().getInitCoord().getX()-1,simulator.getGrid().getInitCoord().getY()-1);
+        this.current = new Point(simulator.getGrid().getInitCoord().getX() - 1, simulator.getGrid().getInitCoord().getY() - 1);
         path = new ArrayList<Coordinates>();
-        path.add(new Coordinates(simulator.getGrid().getInitCoord().getX()-1, simulator.getGrid().getInitCoord().getY()-1));
+        path.add(new Coordinates(simulator.getGrid().getInitCoord().getX() - 1, simulator.getGrid().getInitCoord().getY() - 1));
         this.simulator = simulator;
         this.possibilities = simulator.getGrid().getPoint(current).getAdjNum();
         double dist = simulator.getGrid().dist(new Coordinates(current.getX(), current.getY()));
@@ -102,8 +103,8 @@ public class Individual implements IIndividual {
 
         if (this.length == 0 || o1.path.size() < 1) {
             path = new ArrayList<Coordinates>();
-            path.add(new Point(o1.path.get(0).getX()-1, o1.path.get(0).getY()-1));
-            this.current = new Point(o1.path.get(0).getX()-1, o1.path.get(0).getY()-1);
+            path.add(new Point(o1.path.get(0).getX() - 1, o1.path.get(0).getY() - 1));
+            this.current = new Point(o1.path.get(0).getX() - 1, o1.path.get(0).getY() - 1);
         } else {
             this.path = new ArrayList<Coordinates>();
             for (int i = 0; i < auxlen; i++) path.add(o1.path.get(i)); //da erro aqui
@@ -137,14 +138,14 @@ public class Individual implements IIndividual {
      */
     public String getPathDesc() {
 
-        String aux = "";
+        String aux = "{";
         int i;
         //System.out.println(path.get(1).getX());
         for (i = 0; i < path.size() - 1; i++) {
-            String my_pos = "(" + (path.get(i).getX() + 1) + "," + (path.get(i).getY() + 1) + ")" + "->";
+            String my_pos = "(" + (path.get(i).getX() + 1) + "," + (path.get(i).getY() + 1) + ")" + ",";
             aux += my_pos;
         }
-        String my_pos = "(" + (path.get(i).getX() + 1) + "," + (path.get(i).getY() + 1) + ")";
+        String my_pos = "(" + (path.get(i).getX() + 1) + "," + (path.get(i).getY() + 1) + ")}";
         aux += my_pos;
 
 

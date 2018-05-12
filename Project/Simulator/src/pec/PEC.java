@@ -14,10 +14,12 @@ public class PEC implements Ipec {
 
 
     PriorityQueue<Event> events = new PriorityQueue<>(10, new EventComparator());
+
     //Simulator simulator;
 
     /**
      * Method to add events to the PEC
+     *
      * @param o1, the event to be added
      */
     public void addEventPEC(Event o1) {
@@ -29,7 +31,7 @@ public class PEC implements Ipec {
     /**
      * Method get the next event to be simulated and removes it from the PEC
      */
-    public Event nextEventPEC() {
+    public Event nextEventPEC() throws OutOfEventsException {
 
         Event aux;
         aux = events.poll();
@@ -37,7 +39,8 @@ public class PEC implements Ipec {
         if (aux != null) {
             aux.simulateEvent();
 
-        }
+        } else throw new OutOfEventsException();
+
         return aux;
     }
 

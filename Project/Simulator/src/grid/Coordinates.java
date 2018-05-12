@@ -17,10 +17,9 @@ public class Coordinates {
 
     /**
      * Constructor for class Coordinates
-     * @param xCoord
-     *              specified x coordinate
-     * @param yCoord
-     *              specified y coordinate
+     *
+     * @param xCoord specified x coordinate
+     * @param yCoord specified y coordinate
      */
     public Coordinates(int xCoord, int yCoord) {
         this.x = xCoord;

@@ -20,12 +20,10 @@ public class Tuple {
 
     /**
      * Constructor for class Tuple
-     * @param initCoord
-     *              Coordinates corresponding to the initial point of the specified Tuple
-     * @param finCoord
-     *              Coordinates corresponding to the final point of the specified Tuple
-     * @param cost
-     *              integer corresponding to the cost of the specified Tuple
+     *
+     * @param initCoord Coordinates corresponding to the initial point of the specified Tuple
+     * @param finCoord  Coordinates corresponding to the final point of the specified Tuple
+     * @param cost      integer corresponding to the cost of the specified Tuple
      */
     public Tuple(Coordinates initCoord, Coordinates finCoord, int cost) {
         this.iCoord = initCoord;

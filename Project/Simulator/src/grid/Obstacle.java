@@ -11,10 +11,9 @@ public class Obstacle extends Point {
 
     /**
      * Constructor for class Obstacle
-     * @param x
-     *              integer corresponding to the x coordinate
-     * @param y
-     *              integer corresponding to the y coordinate
+     *
+     * @param x integer corresponding to the x coordinate
+     * @param y integer corresponding to the y coordinate
      */
     public Obstacle(int x, int y) {
         super(x, y);
@@ -24,8 +23,8 @@ public class Obstacle extends Point {
 
     /**
      * Overrides the Point obsFlag method to indicate that this is an obstacle
-     * @return
-     *              boolean true for obsFlag method
+     *
+     * @return boolean true for obsFlag method
      */
     @Override
     public boolean obsFlag() {

@@ -14,9 +14,9 @@ import population.Individual;
 
 public abstract class Event {
 
-    private Individual me;
-    private double timestamp;
-    private PEC ref_pec;
+    Individual me;
+    double timestamp;
+    PEC ref_pec;
 
 
     /**

@@ -6,7 +6,8 @@ import java.util.PriorityQueue;
 import java.util.Random;
 
 /**
- * Move.java - A class extending the event class in order to determine the reproduction behaviour of each individual.
+ * Epidemic.java - A class extending the event class in order to determine the reproduction behaviour of each
+ * individual.
  * It doesn't need to have a timestamp generator since it's always the next event to be simulated when
  * it's added to the PEC.
  * It contains the individual it is related to, the time in which it should be simulated, and a reference to

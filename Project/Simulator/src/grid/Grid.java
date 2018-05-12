@@ -27,10 +27,9 @@ public class Grid {
 
     /**
      * Constructor for class Grid
-     * @param cols
-     *              specified number of columns
-     * @param rows
-     *              specified number of rows
+     *
+     * @param cols specified number of columns
+     * @param rows specified number of rows
      */
     public Grid(int cols, int rows) {
         this.cols = cols;
@@ -38,7 +37,7 @@ public class Grid {
         initCoord = new Coordinates(0, 0);
         finCoord = new Coordinates(0, 0);
 
-         // initializes the gridMatrix
+        // initializes the gridMatrix
         this.gridMatrix = new Point[cols][rows];
         for (int i = 0; i < cols; i++)
             for (int j = 0; j < rows; j++)
@@ -94,8 +93,8 @@ public class Grid {
 
     /**
      * Used to obtain a textual description of the Grid
-     * @return
-     *              string with said description
+     *
+     * @return string with said description
      */
     @Override
     public String toString() {
@@ -132,10 +131,9 @@ public class Grid {
 
     /**
      * Gets a Point from gridMatrix corresponding to the specified Coordinates
-     * @param aCoord
-     *              specified Coordinates
-     * @return
-     *              corresponding gridMatrix Point
+     *
+     * @param aCoord specified Coordinates
+     * @return corresponding gridMatrix Point
      */
     public Point getPoint(Coordinates aCoord) {
         return gridMatrix[aCoord.getX()][aCoord.getY()];
@@ -144,8 +142,8 @@ public class Grid {
 
     /**
      * Adds a specified Point to the gridMatrix
-     * @param aPoint
-     *              specified Point
+     *
+     * @param aPoint specified Point
      */
     public void addPoint(Point aPoint) {
         gridMatrix[aPoint.getX()][aPoint.getY()] = aPoint;
@@ -185,8 +183,8 @@ public class Grid {
 
     /**
      * Fills the grid with the special cost zones (Tuple)
-     * @param tuples
-     *              array of the specified special cost zones
+     *
+     * @param tuples array of the specified special cost zones
      */
     public void fillGridTuples(Tuple[] tuples) {
         int xi, yi, xf, yf;
@@ -258,8 +256,8 @@ public class Grid {
 
     /**
      * Builds a bare-bones gridMatrix version of map
-     * @param obstacles
-     *              array of specified Obstacles
+     *
+     * @param obstacles array of specified Obstacles
      */
     public void buildGrid(Coordinates[] obstacles) {
         Point aPoint;
@@ -287,10 +285,9 @@ public class Grid {
 
     /**
      * Calculates the distance from specified Coordinates to the final Coordinates
-     * @param coord
-     *              specified Coordinates
-     * @return
-     *              distance to final Coordinates
+     *
+     * @param coord specified Coordinates
+     * @return distance to final Coordinates
      */
     public double dist(Coordinates coord) {
         return Math.sqrt(Math.pow(this.finCoord.getX() - coord.getX(), 2) + Math.pow(this.finCoord.getY() - coord.getY(), 2));
@@ -298,12 +295,10 @@ public class Grid {
 
     /**
      * Calculates the total cost of an specified Individual's path
-     * @param path
-     *              array of Coordinates corresponding to the specified path
-     * @param length
-     *              integer corresponding to the length of the specified path
-     * @return
-     *              integer cost of the specified path
+     *
+     * @param path   array of Coordinates corresponding to the specified path
+     * @param length integer corresponding to the length of the specified path
+     * @return integer cost of the specified path
      */
     public int cost(List<Coordinates> path, int length) {
         int i, cost = 0;

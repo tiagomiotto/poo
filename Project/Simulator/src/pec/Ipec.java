@@ -8,16 +8,16 @@ package pec;
  */
 public interface Ipec {
 
-	/**
-	 * Method to add events to the PEC
-	 *
-	 * @param o1, the event to be added
-	 */
-	void addEventPEC(Event o1);
+    /**
+     * Method to add events to the PEC
+     *
+     * @param o1, the event to be added
+     */
+    void addEventPEC(Event o1);
 
-	/**
-	 * Method get the next event to be simulated and removes it from the PEC
-	 */
-	Event nextEventPEC();
+    /**
+     * Method get the next event to be simulated and removes it from the PEC
+     */
+    Event nextEventPEC() throws OutOfEventsException;
 
 }

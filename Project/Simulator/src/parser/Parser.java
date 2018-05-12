@@ -21,8 +21,7 @@ public class Parser extends DefaultHandler {
     private int xi_tuple, yi_tuple, xf_tuple, yf_tuple, n_obst, n_tups;
     private boolean tupleFlag = false;
 
-    public void parseFile(String filename)
-    {
+    public void parseFile(String filename) {
         //Parse the XML files. All the data will be stored in the handler.
         try {
             File inputFile = new File(filename);
@@ -48,54 +47,39 @@ public class Parser extends DefaultHandler {
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-        if(qName.equalsIgnoreCase("simulation"))
-        {
+        if (qName.equalsIgnoreCase("simulation")) {
             c_max = Integer.parseInt(attributes.getValue("finalinst"));
             v_init = Integer.parseInt(attributes.getValue("initpop"));
             v_max = Integer.parseInt(attributes.getValue("maxpop"));
             k = Integer.parseInt(attributes.getValue("comfortsens"));
-        }
-        else if(qName.equalsIgnoreCase("grid"))
-        {
+        } else if (qName.equalsIgnoreCase("grid")) {
             columns = Integer.parseInt(attributes.getValue("colsnb"));
             rows = Integer.parseInt(attributes.getValue("rowsnb"));
-        }
-        else if(qName.equalsIgnoreCase("initialpoint"))
-        {
+        } else if (qName.equalsIgnoreCase("initialpoint")) {
             int xinicial = Integer.parseInt(attributes.getValue("xinitial"));
             int yinicial = Integer.parseInt(attributes.getValue("yinitial"));
             // initial point of the simulation
             initCoord = new Coordinates(xinicial, yinicial);
-        }
-        else if(qName.equalsIgnoreCase("finalpoint"))
-        {
+        } else if (qName.equalsIgnoreCase("finalpoint")) {
             int xfinal = Integer.parseInt(attributes.getValue("xfinal"));
             int yfinal = Integer.parseInt(attributes.getValue("yfinal"));
             // final point of the simulation
             finCoord = new Coordinates(xfinal, yfinal);
-        }
-        else if(qName.equalsIgnoreCase("specialcostzones"))
-        {
+        } else if (qName.equalsIgnoreCase("specialcostzones")) {
             int num = Integer.parseInt(attributes.getValue("num"));
             // array of high cost zones (tuples
             tuples = new Tuple[num];
-        }
-        else if(qName.equalsIgnoreCase("zone"))
-        {
+        } else if (qName.equalsIgnoreCase("zone")) {
             xi_tuple = Integer.parseInt(attributes.getValue("xinitial"));
             yi_tuple = Integer.parseInt(attributes.getValue("yinitial"));
             xf_tuple = Integer.parseInt(attributes.getValue("xfinal"));
             yf_tuple = Integer.parseInt(attributes.getValue("yfinal"));
             tupleFlag = true;
-        }
-        else if(qName.equalsIgnoreCase("obstacles"))
-        {
+        } else if (qName.equalsIgnoreCase("obstacles")) {
             int num = Integer.parseInt(attributes.getValue("num"));
             // array of obstacles
             obstacles = new Coordinates[num];
-        }
-        else if(qName.equalsIgnoreCase("obstacle"))
-        {
+        } else if (qName.equalsIgnoreCase("obstacle")) {
             int x = Integer.parseInt(attributes.getValue("xpos"));
             int y = Integer.parseInt(attributes.getValue("ypos"));
 
@@ -103,17 +87,11 @@ public class Parser extends DefaultHandler {
             Coordinates newObstacle = new Coordinates(x, y);
             obstacles[n_obst] = newObstacle;
             n_obst++;
-        }
-        else if(qName.equalsIgnoreCase("death"))
-        {
+        } else if (qName.equalsIgnoreCase("death")) {
             miu = Integer.parseInt(attributes.getValue("param"));
-        }
-        else if(qName.equalsIgnoreCase("reproduction"))
-        {
+        } else if (qName.equalsIgnoreCase("reproduction")) {
             p = Integer.parseInt(attributes.getValue("param"));
-        }
-        else if(qName.equalsIgnoreCase("move"))
-        {
+        } else if (qName.equalsIgnoreCase("move")) {
             delta = Integer.parseInt(attributes.getValue("param"));
         }
     }
@@ -121,8 +99,7 @@ public class Parser extends DefaultHandler {
     @Override
     public void characters(char ch[], int start, int length) throws SAXException {
 
-        if(tupleFlag)
-        {
+        if (tupleFlag) {
             // points of interest of the tuple
             Coordinates initial_position = new Coordinates(xi_tuple, yi_tuple);
             Coordinates final_position = new Coordinates(xf_tuple, yf_tuple);
@@ -140,17 +117,55 @@ public class Parser extends DefaultHandler {
     }
 
     //Getters
-    public Coordinates getFinCoord() {return finCoord;}
-    public Coordinates getInitCoord() {return initCoord;}
-    public int getRows() {return rows;}
-    public int getColumns() {return columns;}
-    public Tuple[] getTuples() {return tuples;}
-    public Coordinates[] getObstacles() {return obstacles;}
-    public int getC_max() {return c_max;}
-    public int getV_init() {return v_init;}
-    public int getV_max() {return v_max;}
-    public int getK() {return k;}
-    public int getMiu() {return miu;}
-    public int getP() {return p;}
-    public int getDelta() {return delta;}
+    public Coordinates getFinCoord() {
+        return finCoord;
+    }
+
+    public Coordinates getInitCoord() {
+        return initCoord;
+    }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public int getColumns() {
+        return columns;
+    }
+
+    public Tuple[] getTuples() {
+        return tuples;
+    }
+
+    public Coordinates[] getObstacles() {
+        return obstacles;
+    }
+
+    public int getC_max() {
+        return c_max;
+    }
+
+    public int getV_init() {
+        return v_init;
+    }
+
+    public int getV_max() {
+        return v_max;
+    }
+
+    public int getK() {
+        return k;
+    }
+
+    public int getMiu() {
+        return miu;
+    }
+
+    public int getP() {
+        return p;
+    }
+
+    public int getDelta() {
+        return delta;
+    }
 }

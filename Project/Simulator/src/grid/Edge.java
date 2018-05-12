@@ -15,10 +15,9 @@ public class Edge {
 
     /**
      * Constructor for the class Adjacent
-     * @param adjacent
-     *              Point adjacent to a specified Point
-     * @param cost
-     *              integer of the cost of their connection
+     *
+     * @param adjacent Point adjacent to a specified Point
+     * @param cost     integer of the cost of their connection
      */
     Edge(Point adjacent, int cost) {
         this.adjacent = adjacent;

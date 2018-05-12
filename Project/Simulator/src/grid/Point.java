@@ -16,10 +16,9 @@ public class Point extends Coordinates {
 
     /**
      * Constructor for class Point
-     * @param x
-     *              integer corresponding to the x coordinate
-     * @param y
-     *              integer corresponding to the y coordinate
+     *
+     * @param x integer corresponding to the x coordinate
+     * @param y integer corresponding to the y coordinate
      */
     public Point(int x, int y) {
         super(x, y);
@@ -27,8 +26,8 @@ public class Point extends Coordinates {
 
     /**
      * Indicates that a specified Point is "free" (non-obstacle)
-     * @return
-     *              boolean indicating that it is "free"
+     *
+     * @return boolean indicating that it is "free"
      */
     public boolean obsFlag() {
         return false;
@@ -36,10 +35,9 @@ public class Point extends Coordinates {
 
     /**
      * Adds a Point to the specified Point's adjacent list
-     * @param adjacent
-     *              Point to be added to the specified Point's list
-     * @param costAdj
-     *              integer corresponding to the cost of the connection between Point to be added and specified Point
+     *
+     * @param adjacent Point to be added to the specified Point's list
+     * @param costAdj  integer corresponding to the cost of the connection between Point to be added and specified Point
      */
     public void addAdj(Point adjacent, int costAdj) {
         Edge adjPoint = new Edge(adjacent, costAdj);
@@ -50,10 +48,9 @@ public class Point extends Coordinates {
 
     /**
      * Indicates if a Point is adjacent to a specified Point
-     * @param adjacent
-     *              Point to be checked if it's adjacent to the specified Point
-     * @return
-     *              boolean that indicates if they are adjacent (true)
+     *
+     * @param adjacent Point to be checked if it's adjacent to the specified Point
+     * @return boolean that indicates if they are adjacent (true)
      */
     public boolean adjFlag(Point adjacent) {
         for (Edge edge : listAdj) {
@@ -68,10 +65,9 @@ public class Point extends Coordinates {
 
     /**
      * Gets the cost of the connection between the adjacent Point and the specified Point
-     * @param adjacent
-     *              Point adjacent to the specified Point
-     * @return
-     *              Cost of their connection
+     *
+     * @param adjacent Point adjacent to the specified Point
+     * @return Cost of their connection
      */
     public int getAdjCost(Point adjacent) {
         for (Edge edge : listAdj) {
@@ -84,10 +80,9 @@ public class Point extends Coordinates {
 
     /**
      * Sets the cost of the connection between a specified Point and its adjacent Point
-     * @param adjacent
-     *              Point adjacent to the specified Point
-     * @param costAdj
-     *              Cost of their connection
+     *
+     * @param adjacent Point adjacent to the specified Point
+     * @param costAdj  Cost of their connection
      */
     public void setAdjCost(Point adjacent, int costAdj) {
         for (Edge edge : listAdj) {
@@ -99,8 +94,8 @@ public class Point extends Coordinates {
 
     /**
      * Gets the total number of adjacent Points to a specified Point
-     * @return
-     *              integer number of adjacent Points
+     *
+     * @return integer number of adjacent Points
      */
     public int getAdjNum() {
         return listAdj.size();
@@ -108,8 +103,8 @@ public class Point extends Coordinates {
 
     /**
      * Gets the list of adjacent Points to a specified Point
-     * @return
-     *              LinkedList of adjacent Points
+     *
+     * @return LinkedList of adjacent Points
      */
     public LinkedList<Edge> getListAdj() {
         return listAdj;
