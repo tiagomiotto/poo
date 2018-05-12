@@ -12,15 +12,56 @@ import org.xml.sax.helpers.DefaultHandler;
 import grid.Coordinates;
 import grid.Tuple;
 
+/**
+ * Used to parse the xml input file
+ *
+ * @author Group 18
+ */
 public class Parser extends DefaultHandler {
-
+    /**
+     * finCoord stores the final point for individuals for a specified map
+     * initCoord stores the initial point for individuals for a specified map
+     */
     private Coordinates finCoord, initCoord;
+    /**
+     * c_max stores the final instant of the simulation
+     * v_init stores the initial population of the simulation
+     * v_max stores the maximum population of the simulation
+     * k stores the comfort sensitivity to small variations
+     * miu stores the Death event parameter
+     * p stores the Reproduction event parameter
+     * delta stores the Move event parameter
+     * columns stores the specified number of columns
+     * rows stores the specified number of rows
+     */
     private int c_max, v_init, v_max, k, miu, p, delta, columns, rows;
+    /**
+     * tuples stores an array of high cost zones (Tuples)
+     */
     private Tuple[] tuples;
+    /**
+     * obstacles stores an array of obstacles
+     */
     private Coordinates[] obstacles;
+    /**
+     * xi_tuple stores the initial x coordinate of a Tuple
+     * yi_tuple stores the initial y coordinate of a Tuple
+     * xf_tuple stores the final x coordinate of a Tuple
+     * yf_tuple stores the final y coordinate of a Tuple
+     * n_obst stores the total number of Obstacles
+     * n_tups stores the total number of Tuples
+     */
     private int xi_tuple, yi_tuple, xf_tuple, yf_tuple, n_obst, n_tups;
+    /**
+     * tupleFlag indicates that a Tuple is being parsed
+     */
     private boolean tupleFlag = false;
 
+    /**
+     * Parses the xml input file
+     * @param filename
+     *              String corresponding to the name of the file to be parsed
+     */
     public void parseFile(String filename) {
         //Parse the XML files. All the data will be stored in the handler.
         try {
@@ -35,16 +76,25 @@ public class Parser extends DefaultHandler {
         }
     }
 
+    /**
+     * Called when the parsing starts
+     */
     @Override
     public void startDocument() {
         System.out.println("Parsing started");
     }
 
+    /**
+     * Called when the parsing ends
+     */
     @Override
     public void endDocument() {
         System.out.println("Parsing concluded");
     }
 
+    /**
+     * Called for every new element of the file
+     */
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         if (qName.equalsIgnoreCase("simulation")) {
@@ -82,7 +132,6 @@ public class Parser extends DefaultHandler {
         } else if (qName.equalsIgnoreCase("obstacle")) {
             int x = Integer.parseInt(attributes.getValue("xpos"));
             int y = Integer.parseInt(attributes.getValue("ypos"));
-
             // creates obstacle and adds it to the array, incrementing the total number of obstacles
             Coordinates newObstacle = new Coordinates(x, y);
             obstacles[n_obst] = newObstacle;
@@ -96,6 +145,9 @@ public class Parser extends DefaultHandler {
         }
     }
 
+    /**
+     * Used to parse each element
+     */
     @Override
     public void characters(char ch[], int start, int length) throws SAXException {
 
