@@ -96,7 +96,7 @@ public class Parser extends DefaultHandler {
      * Called for every new element of the file
      */
     @Override
-    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+    public void startElement(String uri, String localName, String qName, Attributes attributes) {
         if (qName.equalsIgnoreCase("simulation")) {
             c_max = Integer.parseInt(attributes.getValue("finalinst"));
             v_init = Integer.parseInt(attributes.getValue("initpop"));
@@ -149,7 +149,7 @@ public class Parser extends DefaultHandler {
      * Used to parse each element
      */
     @Override
-    public void characters(char ch[], int start, int length) throws SAXException {
+    public void characters(char ch[], int start, int length) {
 
         if (tupleFlag) {
             // points of interest of the tuple
